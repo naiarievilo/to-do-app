@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
-import eslint from "vite-plugin-eslint";
 import react from "@vitejs/plugin-react";
+import eslint from "vite-plugin-eslint";
 import { resolve } from "path";
 
 export default defineConfig({
@@ -12,10 +12,10 @@ export default defineConfig({
       "@layout": resolve(__dirname, "src/layout"),
       "@lib": resolve(__dirname, "src/lib"),
       "@routes": resolve(__dirname, "src/routes"),
-      "@shared": resolve(__dirname, "src/shared")
+      "@shared": resolve(__dirname, "src/shared"),
     },
   },
   css: {
-    postcss: resolve(__dirname, "postcss.config.js")
-  }
+    postcss: resolve(__dirname, "postcss.config.js"),
+  },
 });
