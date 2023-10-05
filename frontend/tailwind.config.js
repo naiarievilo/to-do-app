@@ -1,11 +1,22 @@
 /** @type {import('tailwindcss').Config} */
+
+import defaultTheme from "tailwindcss/defaultTheme";
+
 export default {
-  content: ["./src/**/*.{js,jsx}"],
+  content: {
+    relative: true,
+    files: [
+      "./src/**/*.{js,jsx}",
+      "./index.html",
+    ]
+  },
   theme: {
-    screens: {
-      xs: "480px",
+    extend: {
+      screens: {
+        xs: "480px",
+        ...defaultTheme.screens,
+      },
     },
-    extend: {},
   },
   plugins: [],
 };
