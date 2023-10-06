@@ -1,0 +1,3 @@
+# Ignore CodeSandBox config
+.condesandbox/*
+.vscode/*

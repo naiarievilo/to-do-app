@@ -5,10 +5,7 @@ import defaultTheme from "tailwindcss/defaultTheme";
 export default {
   content: {
     relative: true,
-    files: [
-      "./src/**/*.{js,jsx}",
-      "./index.html",
-    ]
+    files: ["./src/**/*.{js,jsx}", "./index.html"],
   },
   theme: {
     extend: {

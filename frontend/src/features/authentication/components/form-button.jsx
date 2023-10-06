@@ -13,4 +13,4 @@ export function FormButton({ label }) {
 }
 FormButton.propTypes = {
   label: PropTypes.string,
-}
+};

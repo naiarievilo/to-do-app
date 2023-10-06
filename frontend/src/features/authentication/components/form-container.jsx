@@ -9,4 +9,4 @@ export function FormContainer({ children }) {
 }
 FormContainer.propTypes = {
   children: PropTypes.func,
-}
+};
