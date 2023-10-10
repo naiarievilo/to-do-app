@@ -1,0 +1,21 @@
+@layer base {
+  body {
+    scrollbar-width: 4px;
+    scrollbar-color: #0f172aff #ffffff00;
+  }
+
+  body::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  body::-webkit-scrollbar-track {
+    background-color: #ffffff00;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: #0f172a;
+    border-radius: 6px;
+    height: 20px;
+  }
+}

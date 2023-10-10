@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 
-import { AppLogo } from "./app-logo.jsx";
 import { MenuIcon } from "./menu-icon.jsx";
 
 export function Navbar() {
@@ -11,9 +10,6 @@ export function Navbar() {
         px-4 py-3 shadow-md"
       >
         <ul className="container mx-auto flex max-w-4xl items-center space-x-4">
-          <li>
-            <AppLogo classes="w-10 h-10 stroke-white" />
-          </li>
           <li>
             <Link
               to="/"
