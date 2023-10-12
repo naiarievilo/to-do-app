@@ -1,5 +1,4 @@
 @import "tailwindcss/base";
 @import "@assets/base.css";
 @import "tailwindcss/components";
-@import "@assets/app-bg.css";
 @import "tailwindcss/utilities";

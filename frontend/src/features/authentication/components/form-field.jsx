@@ -16,7 +16,7 @@ export function FormField({
         htmlFor={identifier}
         className={`block ${labelUtils}
         ${
-          isRequired && `after:ml-0.5 after:text-pink-500 after:content-['*']`
+          isRequired && `after:ml-0.5 after:text-rose-500 after:content-['*']`
         }`}
       >
         {label}
@@ -27,10 +27,11 @@ export function FormField({
         type={type}
         value={value}
         onChange={onChange}
-        className={`text-md mb-3 mt-1 block w-full rounded-md border border-slate-300
-        bg-white px-3 py-2 placeholder-slate-400 shadow-md invalid:border-pink-500
-        invalid:text-pink-600 focus:border-sky-400 focus:outline-none focus:ring-1
-        focus:ring-sky-400 focus:invalid:border-pink-500 focus:invalid:ring-pink-500
+        className={`text-md mb-3 mt-1 block w-full rounded-lg border
+        border-slate-300 bg-white px-3 py-2 placeholder-slate-400 shadow-sm
+        invalid:border-rose-500 invalid:text-rose-500 focus:border-pink-400
+        focus:outline-none focus:ring-1 focus:ring-pink-400
+        focus:invalid:border-rose-500 focus:invalid:ring-rose-500
         disabled:border-slate-200 disabled:bg-slate-50 disabled:text-slate-500
         disabled:shadow-none ${inputUtils}`}
       />

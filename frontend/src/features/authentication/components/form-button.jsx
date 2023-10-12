@@ -4,8 +4,8 @@ export function FormButton({ label }) {
   return (
     <button
       type="submit"
-      className="text-md mt-4 w-auto self-center rounded-md bg-sky-400 px-4 py-2
-      font-semibold text-white shadow-sm hover:bg-sky-500"
+      className="mt-4 w-full self-center rounded-lg bg-blue-500 px-4 py-2
+      text-lg text-white shadow-sm hover:bg-blue-400"
     >
       {label}
     </button>
