@@ -7,12 +7,7 @@ export default defineConfig({
   plugins: [react(), eslint()],
   resolve: {
     alias: {
-      "@assets": resolve(__dirname, "src/assets"),
-      "@features": resolve(__dirname, "src/features"),
-      "@layout": resolve(__dirname, "src/layout"),
-      "@lib": resolve(__dirname, "src/lib"),
-      "@routes": resolve(__dirname, "src/routes"),
-      "@shared": resolve(__dirname, "src/shared"),
+      "@": resolve(__dirname, "src/"),
     },
   },
   css: {
