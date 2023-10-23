@@ -22,7 +22,7 @@ export function RegisterForm() {
           label="Password"
           isRequired={true}
           type="password"
-          inputUtils="mb-1.5"
+          inputUtils="mb-0.5"
         />
         <FormField
           identifier="confirmPassword"

@@ -4,19 +4,15 @@ export function AppLogo({ classes }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke="currentColor"
+      viewBox="0 -960 960 960"
       className={classes}
     >
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582
-        16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0
-        011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75
-        21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+        d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q8 0
+        15 1.5t14 4.5l-74 74H200v560h560v-266l80-80v346q0 33-23.5
+        56.5T760-120H200Zm261-160L235-506l56-56 170 170 367-367 57 55-424 424Z"
       />
     </svg>
   );

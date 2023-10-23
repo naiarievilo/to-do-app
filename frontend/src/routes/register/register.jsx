@@ -1,22 +1,21 @@
 import {
   AuthBackground,
   RegisterForm,
-} from "@features/authentication/index.js";
+} from "@/features/authentication/index.js";
 
-import { AppHeader, MainContent } from "@layout/index.js";
+import { AppHeader } from "@/shared/ui/index.js";
 
 export function Register() {
   return (
     <>
       <AuthBackground />
-      <MainContent classes="min-h-screen min-w-screen flex flex-col">
+      <main className="min-w-screen flex min-h-screen flex-col">
         <AppHeader
-          appLogo="stroke-slate-100"
           appName="text-slate-100"
           githubLogo="stroke-slate-100 fill-slate-100"
         />
         <RegisterForm />
-      </MainContent>
+      </main>
     </>
   );
 }
