@@ -1,9 +1,9 @@
-import * as React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DayPicker } from "react-day-picker";
+import { PropTypes } from "prop-types";
 
 import { cn } from "@/lib/utils.js";
-import { buttonVariants } from "@/shared/ui/button.jsx";
+import { buttonVariants } from "./button.jsx";
 
 function Calendar({ className, classNames, showOutsideDays = true, ...props }) {
   return (
@@ -32,7 +32,8 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }) {
         first:[&:has([aria-selected])]:rounded-l-md
         last:[&:has([aria-selected])]:rounded-r-md focus-within:relative
         focus-within:z-20 dark:[&:has([aria-selected])]:bg-slate-800`,
-        day: cn( buttonVariants({ variant: "ghost" }),
+        day: cn(
+          buttonVariants({ variant: "ghost" }),
           "h-9 w-9 p-0 font-normal aria-selected:opacity-100",
         ),
         day_selected: `bg-slate-900 text-slate-50 hover:bg-slate-900
@@ -51,13 +52,23 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }) {
         ...classNames,
       }}
       components={{
-        IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
-        IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
+        IconLeft: ({ ...props }) => (
+          <ChevronLeft className="h-4 w-4" {...props} />
+        ),
+        IconRight: ({ ...props }) => (
+          <ChevronRight className="h-4 w-4" {...props} />
+        ),
       }}
       {...props}
     />
   );
 }
 Calendar.displayName = "Calendar";
+Calendar.propTypes = {
+  className: PropTypes.string,
+  classNames: PropTypes.obj,
+  props: PropTypes.obj,
+  showOutsideDays: PropTypes.bool,
+};
 
 export { Calendar };

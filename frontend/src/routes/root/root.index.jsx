@@ -51,7 +51,7 @@ export function RootIndex() {
       </section>
       <div
         className="insext-x-0 4xl:h-[632px] relative bottom-0 h-[200px]
-        min-w-full bg-[url('@assets/index-bg.svg')] bg-cover bg-bottom
+        min-w-full bg-[url('@/assets/index-bg.svg')] bg-cover bg-bottom
         bg-no-repeat md:h-[400px] lg:h-[580px] xl:h-[240px] 2xl:h-[460px]"
         aria-hidden={true}
       ></div>
