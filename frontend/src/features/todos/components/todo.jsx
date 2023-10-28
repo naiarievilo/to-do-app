@@ -1,16 +1,20 @@
+import { Checkbox } from "@/ui/checkbox.jsx";
+import { Label } from "@/ui/label.jsx";
+
 import { PropTypes } from "prop-types";
 
-import { TodoItem } from "./todo-item.jsx";
-
-export function Todo({ items }) {
+export function Todo({ className, data }) {
   return (
-    <ul>
-      {items.map((item) => (
-        <TodoItem />
-      ))}
-    </ul>
+    <li
+      className={`flex items-center space-x-2 rounded-md p-4
+      hover:bg-blue-50/90 ${className}`}
+    >
+      <Checkbox id={data} />
+      <Label htmlFor={data}>{data}</Label>
+    </li>
   );
 }
 Todo.propTypes = {
-  items: PropTypes.string,
+  className: PropTypes.string,
+  data: PropTypes.string,
 };

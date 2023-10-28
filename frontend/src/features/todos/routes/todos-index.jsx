@@ -1,6 +1,6 @@
 import { PropTypes } from "prop-types";
 
-import { AddIcon } from "../assets/add-icon.jsx";
+import { AddIcon } from "@/assets/index.js";
 import { TodoContainer } from "../layout/todo-container.jsx";
 
 export function TodosIndex({ container, title, btnClass, btnName }) {

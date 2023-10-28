@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
 
-import { AllIcon, TodayIcon, WeekIcon, UpcomingIcon } from "../assets/index.js";
+import {
+  CalendarIcon,
+  TodayIcon,
+  UpcomingIcon,
+  WeekIcon,
+} from "@/assets/index.js";
 
 export function TodoMenu({ container }) {
   return (
@@ -16,7 +21,7 @@ export function TodoMenu({ container }) {
             hover:text-rose-600 active:bg-pink-100"
           >
             <Link to={`/home/`} className="flex items-center">
-              <AllIcon className="mr-1 h-6 w-6 select-none fill-rose-400" />
+              <CalendarIcon className="mr-1 h-6 w-6 select-none fill-rose-400" />
               <h3 className="text-xl">All</h3>
             </Link>
           </li>

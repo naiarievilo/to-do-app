@@ -1,2 +1,12 @@
-export { AppLogo } from "./app-logo.jsx";
-export { GithubLogo } from "./github-logo.jsx";
+export { AddIcon } from "./icons/add-icon.jsx";
+export { AppIcon } from "./icons/app-icon.jsx";
+export { CalendarIcon } from "./icons/calendar-icon.jsx";
+export { CloseIcon } from "./icons/close-icon.jsx";
+export { GithubIcon } from "./icons/github-icon.jsx";
+export { LoginIcon } from "./icons/login-icon.jsx";
+export { LogoutIcon } from "./icons/logout-icon.jsx";
+export { MenuIcon } from "./icons/menu-icon.jsx";
+export { RegisterIcon } from "./icons/register-icon.jsx";
+export { TodayIcon } from "./icons/today-icon.jsx";
+export { UpcomingIcon } from "./icons/upcoming-icon.jsx";
+export { WeekIcon } from "./icons/week-icon.jsx";

@@ -2,12 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import {
+  Error,
+  Home,
+  HomeIndex,
+  Login,
+  Register,
+  Root,
+  RootIndex,
+  Today,
+  Upcoming,
+  Week,
+} from "@/routes/index.js";
+
 import "./main.css";
-import { Error } from "@/routes/error.jsx";
-import { Home, HomeIndex, Today, Week, Upcoming } from "@/routes/home/index.js";
-import { Login } from "@/routes/login/login.jsx";
-import { Register } from "@/routes/register/register.jsx";
-import { Root, RootIndex } from "@/routes/root/index.js";
 
 const router = createBrowserRouter([
   {
