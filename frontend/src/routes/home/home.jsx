@@ -1,23 +1,34 @@
+import { Outlet } from "react-router-dom";
+
 import { AppHeader } from "@/ui/app-header.jsx";
 import { TodoList, TodoMenu } from "@/features/todos/index.js";
 
 export function Home() {
+  const hasData = false;
+
   return (
-    <>
-      <AppHeader />
-      <div className="container mx-auto my-16 flex max-w-7xl">
+    <div className="h-full flex-col">
+      <AppHeader
+        header="bg-rose-500"
+        appIcon="fill-slate-50"
+        appName="text-slate-50"
+      />
+      <main className="flex h-full">
         <TodoMenu />
-        <main className="mx-auto flex w-8/12 flex-col">
-          {mockTodos.map((todoList) => (
-            <TodoList
-              key={todoList.date}
-              date={todoList.date}
-              todos={todoList.todos}
-            />
-          ))}
-        </main>
-      </div>
-    </>
+        {(hasData)
+          ?
+            mockTodos.map((todoList) => (
+              <TodoList
+                key={todoList.date}
+                date={todoList.date}
+                todos={todoList.todos}
+              />
+            ))
+          :
+            <Outlet />
+        }
+      </main>
+    </div>
   );
 }
 

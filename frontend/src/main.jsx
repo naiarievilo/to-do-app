@@ -3,16 +3,11 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import {
-  Error,
-  Home,
-  HomeIndex,
+  Error, Home,
   Login,
   Register,
   Root,
   RootIndex,
-  Today,
-  Upcoming,
-  Week,
 } from "@/routes/index.js";
 
 import "./main.css";
@@ -35,22 +30,7 @@ const router = createBrowserRouter([
       {
         path: "home/",
         element: <Home />,
-        children: [
-          { index: true, element: <HomeIndex /> },
-          {
-            path: "today/",
-            element: <Today />,
-          },
-          {
-            path: "week/",
-            element: <Week />,
-          },
-          {
-            path: "upcoming/",
-            element: <Upcoming />,
-          },
-        ],
-      },
+      }
     ],
   },
 ]);

@@ -51,4 +51,4 @@ Button.propTypes = {
   props: PropTypes.obj,
 };
 
-export { Button, buttonVariants };
+export { Button };

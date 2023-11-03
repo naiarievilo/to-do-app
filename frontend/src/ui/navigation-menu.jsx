@@ -142,7 +142,6 @@ NavigationMenuIndicator.propTypes = {
 };
 
 export {
-  navigationMenuTriggerStyle,
   NavigationMenu,
   NavigationMenuList,
   NavigationMenuItem,

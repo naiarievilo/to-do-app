@@ -1,7 +1,11 @@
 export { AddIcon } from "./icons/add-icon.jsx";
 export { AppIcon } from "./icons/app-icon.jsx";
+export { AppLogo } from "./app-logo.jsx";
 export { CalendarIcon } from "./icons/calendar-icon.jsx";
 export { CloseIcon } from "./icons/close-icon.jsx";
+export { DeleteIcon } from "./icons/delete-icon.jsx";
+export { DeleteForeverIcon } from "./icons/delete-forever-icon.jsx";
+export { EditSquareIcon } from "./icons/edit-square-icon.jsx";
 export { GithubIcon } from "./icons/github-icon.jsx";
 export { LoginIcon } from "./icons/login-icon.jsx";
 export { LogoutIcon } from "./icons/logout-icon.jsx";

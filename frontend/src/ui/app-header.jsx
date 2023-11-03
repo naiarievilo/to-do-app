@@ -1,7 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { PropTypes } from "prop-types";
 
-import { AppIcon, LoginIcon, MenuIcon, RegisterIcon } from "@/assets/index.js";
+import {
+  AppIcon,
+  AppLogo,
+  LoginIcon,
+  MenuIcon,
+  RegisterIcon,
+} from "@/assets/index.js";
 import { Button } from "@/ui/button.jsx";
 import {
   NavigationMenu,
@@ -18,43 +24,41 @@ import {
   SheetTrigger,
 } from "@/ui/sheet.jsx";
 
-export function AppHeader({ appLogo, appName }) {
+export function AppHeader({ header, appIcon, appName }) {
+  const location = useLocation();
+  const route = location.pathname;
+
   return (
-    <header className="flex min-w-full items-center justify-between px-8 py-4">
-      <Link to={`/`} className="flex items-center">
-        <AppIcon
-          className={`mr-1 h-10 w-10 select-none fill-rose-500 3xl:h-20 3xl:w-20
-          4xl:h-32 4xl:w-32 ${appLogo}`}
-        />
-        <h2
-          className={`my-auto select-none font-sans text-3xl
-          font-semibold tracking-tight 3xl:text-5xl 4xl:text-7xl ${appName}`}
-        >
-          TODO
-        </h2>
-      </Link>
+    <header className={`flex items-center justify-between px-8 py-2 ${header}`}>
+      <AppLogo appName={appName} appIcon={appIcon} />
       <NavigationMenu>
-        <MenuListStandard />
-        <MenuListMobile />
+        {!route.includes("home") && (
+          <>
+            <MenuListStandard />
+            <MenuListMobile />
+          </>
+        )}
       </NavigationMenu>
     </header>
   );
 }
 AppHeader.propTypes = {
-  appLogo: PropTypes.string,
+  appIcon: PropTypes.string,
   appName: PropTypes.string,
+  header: PropTypes.string,
 };
 
 function MenuListStandard() {
   return (
-    <NavigationMenuList className="my-2 hidden sm:flex">
+    <NavigationMenuList className="hidden sm:flex">
       <NavigationMenuItem className="mr-4 self-center">
         <NavigationMenuLink>
           <Link
             to={`/login/`}
             className="my-auto select-none rounded-md px-4 py-1
-            font-sans text-xl font-semibold tracking-tight text-slate-800 transition-all 
-            duration-200 hover:text-rose-500 3xl:text-4xl 4xl:text-6xl"
+            font-sans text-xl font-semibold tracking-tight text-slate-800
+            transition-all duration-200 hover:text-rose-500 3xl:text-4xl
+            4xl:text-6xl"
           >
             Log in
           </Link>
