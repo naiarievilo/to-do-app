@@ -5,11 +5,11 @@ import { TodayIcon, UpcomingIcon, WeekIcon } from "@/assets/index.js";
 
 export function TodoMenu() {
   return (
-    <aside className="h-full w-72 bg-slate-200/50 p-4">
-      <nav className="h-full py-12 px-8">
-        <section className="flex flex-col space-y-4 h-full">
+    <aside className="h-full w-80 bg-blue-100 p-4">
+      <nav className=" px-8 py-12">
+        <section className="flex flex-col space-y-4">
           <header className="flex items-center space-y-2">
-            <h2 className="text-xl font-semibold tracking-wide text-rose-500">
+            <h2 className="text-xl font-semibold tracking-wide text-blue-500">
               CALENDAR
             </h2>
           </header>
@@ -38,7 +38,7 @@ function MenuItem({ label, children }) {
     <li className="rounded-xl py-2 pl-2 pr-6">
       <Button
         className="transition-color flex items-center fill-slate-600
-        text-xl duration-200 hover:fill-rose-500 hover:text-rose-500"
+        text-xl duration-200 hover:fill-blue-500 hover:text-blue-500"
       >
         {children}
         <h3>{label}</h3>

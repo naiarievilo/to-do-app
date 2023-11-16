@@ -7,7 +7,7 @@ export function AppLogo({ appName, appIcon }) {
   return (
     <Link to={`/`} className="flex items-center">
       <AppIcon
-        className={`mr-1 h-10 w-10 select-none fill-rose-500 3xl:h-20 3xl:w-20
+        className={`mr-1 h-10 w-10 select-none fill-blue-600 3xl:h-20 3xl:w-20
 4xl:h-32 4xl:w-32 ${appIcon}`}
       />
       <h2

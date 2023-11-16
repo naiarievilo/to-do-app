@@ -28,16 +28,21 @@ export function AppHeader({ header, appIcon, appName }) {
   const location = useLocation();
   const route = location.pathname;
 
+  const AnonymousMenu = (
+    <>
+      <MenuListStandard />
+      <MenuListMobile />
+    </>
+  );
+  const LoggedMenu = <></>;
+
   return (
-    <header className={`flex items-center justify-between px-8 py-2 ${header}`}>
+    <header
+      className={`flex w-full items-center justify-between px-8 py-2 ${header}`}
+    >
       <AppLogo appName={appName} appIcon={appIcon} />
       <NavigationMenu>
-        {!route.includes("home") && (
-          <>
-            <MenuListStandard />
-            <MenuListMobile />
-          </>
-        )}
+        {!route.includes("home") ? AnonymousMenu : LoggedMenu}
       </NavigationMenu>
     </header>
   );
@@ -57,7 +62,7 @@ function MenuListStandard() {
             to={`/login/`}
             className="my-auto select-none rounded-md px-4 py-1
             font-sans text-xl font-semibold tracking-tight text-slate-800
-            transition-all duration-200 hover:text-rose-500 3xl:text-4xl
+            transition-all duration-200 hover:text-blue-600 3xl:text-4xl
             4xl:text-6xl"
           >
             Log in
@@ -68,9 +73,9 @@ function MenuListStandard() {
         <NavigationMenuLink>
           <Link
             to={`/register/`}
-            className="my-auto select-none rounded-md bg-rose-500 px-4
+            className="my-auto select-none rounded-lg bg-blue-600 px-4
             py-2 font-sans text-xl font-semibold tracking-tight text-slate-50
-            transition-all duration-200 hover:bg-rose-500/90 3xl:text-4xl
+            transition-all duration-200 hover:bg-blue-500/90 3xl:text-4xl
             4xl:text-6xl"
           >
             Sign up

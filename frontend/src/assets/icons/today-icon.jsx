@@ -8,8 +8,6 @@ export function TodayIcon({ className }) {
       className={className}
     >
       <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
         d="M360-300q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29
         71t-71 29ZM200-80q-33 0-56.5-23.5T120-160v-560q0-33
         23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5

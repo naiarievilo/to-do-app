@@ -1,32 +1,35 @@
-import { Outlet } from "react-router-dom";
-
 import { AppHeader } from "@/ui/app-header.jsx";
-import { TodoList, TodoMenu } from "@/features/todos/index.js";
+import { TodoList, TodoMenu, TodoPanelIndex } from "@/features/todos/index.js";
+import { ScrollArea, ScrollBar } from "@/ui/scroll-area.jsx";
 
 export function Home() {
-  const hasData = false;
+  const hasData = true;
 
   return (
-    <div className="h-full flex-col">
+    <div className="flex h-full flex-col overflow-hidden">
       <AppHeader
-        header="bg-rose-500"
+        header="bg-blue-500"
         appIcon="fill-slate-50"
         appName="text-slate-50"
       />
-      <main className="flex h-full">
+      <main className="max-w-screen flex max-h-screen">
         <TodoMenu />
-        {(hasData)
-          ?
-            mockTodos.map((todoList) => (
-              <TodoList
-                key={todoList.date}
-                date={todoList.date}
-                todos={todoList.todos}
-              />
-            ))
-          :
-            <Outlet />
-        }
+        <ScrollArea className="h-full max-h-full w-full max-w-full overflow-y-auto">
+          <ul className="flex h-full w-full flex-col">
+            {hasData ? (
+              mockTodos.map((todoList) => (
+                <TodoList
+                  key={todoList.date}
+                  date={todoList.date}
+                  todos={todoList.todos}
+                />
+              ))
+            ) : (
+              <TodoPanelIndex />
+            )}
+          </ul>
+          <ScrollBar className="bg-slate-50" />
+        </ScrollArea>
       </main>
     </div>
   );
@@ -39,7 +42,7 @@ const mockTodos = [
       {
         id: 0,
         data: "Give Polly some crackers",
-        isChecked: false,
+        isChecked: true,
       },
     ],
   },
@@ -47,7 +50,7 @@ const mockTodos = [
     date: new Date("October 28, 2023"),
     todos: [
       {
-        id: 0,
+        id: 1,
         data: "Give Polly some crackers",
         isChecked: false,
       },
@@ -57,7 +60,17 @@ const mockTodos = [
     date: new Date("October 29, 2023"),
     todos: [
       {
-        id: 0,
+        id: 2,
+        data: "Give Polly some crackers",
+        isChecked: false,
+      },
+    ],
+  },
+  {
+    date: new Date("October 30, 2023"),
+    todos: [
+      {
+        id: 3,
         data: "Give Polly some crackers",
         isChecked: false,
       },

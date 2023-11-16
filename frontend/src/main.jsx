@@ -3,7 +3,8 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import {
-  Error, Home,
+  Error,
+  Home,
   Login,
   Register,
   Root,
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
       {
         path: "home/",
         element: <Home />,
-      }
+      },
     ],
   },
 ]);

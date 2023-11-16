@@ -8,8 +8,6 @@ export function WeekIcon({ className }) {
       className={className}
     >
       <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
         d="M320-400q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5
         11.5T360-440q0 17-11.5 28.5T320-400Zm160 0q-17 0-28.5-11.5T440-440q0-17
         11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm160

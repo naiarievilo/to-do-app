@@ -8,8 +8,6 @@ export function CloseIcon({ className }) {
       className={className}
     >
       <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
         d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224
         224 224-56 56-224-224-224 224Z"
       />

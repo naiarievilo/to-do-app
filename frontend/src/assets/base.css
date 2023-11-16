@@ -1,5 +1,5 @@
 @layer base {
   html {
-    overflow: auto;
+    scrollbar-width: thin;
   }
 }
