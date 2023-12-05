@@ -1,12 +1,12 @@
+import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
 
-import { Button } from "@/ui/button.jsx";
 import { TodayIcon, UpcomingIcon, WeekIcon } from "@/assets/index.js";
 
 export function TodoMenu() {
   return (
-    <aside className="h-full w-80 bg-blue-100 p-4">
-      <nav className=" px-8 py-12">
+    <aside className="h-full w-72 bg-blue-100 p-4">
+      <nav className="w-72 px-8 py-12">
         <section className="flex flex-col space-y-4">
           <header className="flex items-center space-y-2">
             <h2 className="text-xl font-semibold tracking-wide text-blue-500">
@@ -14,14 +14,14 @@ export function TodoMenu() {
             </h2>
           </header>
           <ul className="flex flex-col space-y-2">
-            <MenuItem label="Today">
-              <TodayIcon className="mr-2 h-6 w-6 select-none" />
+            <MenuItem label="Today" to="today/">
+              <TodayIcon className="mr-2 h-5 w-5 select-none" />
             </MenuItem>
-            <MenuItem label="This week">
-              <WeekIcon className="mr-2 h-6 w-6 select-none" />
+            <MenuItem label="This week" to="week/">
+              <WeekIcon className="mr-2 h-5 w-5 select-none" />
             </MenuItem>
-            <MenuItem label="Upcoming">
-              <UpcomingIcon className="mr-2 h-6 w-6 select-none" />
+            <MenuItem label="Upcoming" to="upcoming/">
+              <UpcomingIcon className="mr-2 h-5 w-5 select-none" />
             </MenuItem>
           </ul>
         </section>
@@ -30,23 +30,25 @@ export function TodoMenu() {
   );
 }
 TodoMenu.propTypes = {
-  container: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
-function MenuItem({ label, children }) {
+function MenuItem({ label, children, to }) {
   return (
     <li className="rounded-xl py-2 pl-2 pr-6">
-      <Button
+      <Link
         className="transition-color flex items-center fill-slate-600
-        text-xl duration-200 hover:fill-blue-500 hover:text-blue-500"
+        text-lg duration-200 hover:fill-blue-500 hover:text-blue-500"
+        to={to}
       >
         {children}
         <h3>{label}</h3>
-      </Button>
+      </Link>
     </li>
   );
 }
 MenuItem.propTypes = {
   children: PropTypes.func,
   label: PropTypes.string,
+  to: PropTypes.string,
 };

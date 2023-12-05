@@ -18,5 +18,5 @@ export function HorDotsIcon({ className }) {
   );
 }
 HorDotsIcon.propTypes = {
-  className: PropTypes.string
-}
+  className: PropTypes.string,
+};

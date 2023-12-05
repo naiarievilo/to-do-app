@@ -5,6 +5,12 @@ import { Checkbox } from "@/ui/checkbox.jsx";
 import { Button } from "@/ui/button.jsx";
 import { DeleteIcon } from "@/assets/index.js";
 import { Input } from "@/ui/input.jsx";
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/ui/tooltip.jsx";
 
 export function Todo({ className, id, data, isChecked }) {
   const [todo, setTodo] = useState(data);
@@ -20,11 +26,11 @@ export function Todo({ className, id, data, isChecked }) {
 
   useEffect(() => {
     let inputRef = document.getElementById(id);
-    inputRef.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
+    inputRef.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
         inputRef.blur();
       }
-    })
+    });
 
     return () => inputRef.removeEventListener;
   }, [id]);
@@ -39,20 +45,26 @@ export function Todo({ className, id, data, isChecked }) {
         id={id}
         className={`text-md border-none bg-transparent outline-transparent
         ring-offset-transparent focus-visible:ring-transparent
-        ${checked ? 'line-through text-slate-400' : ''}`}
+        ${checked ? "text-slate-400 line-through" : ""}`}
         value={todo}
         onChange={handleInputChange}
+        autocomplete="off"
       />
       <ul className="flex grow items-center justify-end space-x-4">
         <li className="flex items-center">
-        </li>
-        <li className="flex items-center">
-          <Button className="flex items-center rounded-full">
-            <DeleteIcon
-              className="h-6 w-6 fill-slate-700 transition-all
-              duration-200"
-            />
-          </Button>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button className="flex items-center rounded-full">
+                  <DeleteIcon
+                    className="h-6 w-6 fill-slate-700 transition-all
+                    duration-200"
+                  />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Delete to-do</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </li>
       </ul>
     </li>

@@ -23,5 +23,5 @@ export function DragIcon({ className }) {
   );
 }
 DragIcon.propTypes = {
-  className: PropTypes.string
-}
+  className: PropTypes.string,
+};

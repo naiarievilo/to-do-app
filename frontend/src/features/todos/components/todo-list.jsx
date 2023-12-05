@@ -1,17 +1,17 @@
 import { PropTypes } from "prop-types";
 
-import { AddTodo } from "./add-todo.jsx";
 import { Button } from "@/ui/button.jsx";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuGroup,
-  DropdownMenuItem
+  DropdownMenuItem,
 } from "@/ui/dropdown-menu.jsx";
 import { DeleteForeverIcon, HorDotsIcon } from "@/assets/index.js";
 import { Separator } from "@/ui/separator.jsx";
 
+import { AddTodo } from "./add-todo.jsx";
 import { Todo } from "./todo.jsx";
 
 export function TodoList({ date, todos }) {
@@ -60,14 +60,14 @@ function TodoListHeader({ date }) {
       <DropdownMenu className="rounded-full">
         <DropdownMenuTrigger>
           <Button className="flex items-center">
-            <HorDotsIcon className="w-8 h-8 fill-slate-700" />
+            <HorDotsIcon className="h-8 w-8 fill-slate-700" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuGroup>
             <DropdownMenuItem>
               <Button>
-                <DeleteForeverIcon className="w-5 h-5 fill-slate-700 mr-2" />
+                <DeleteForeverIcon className="mr-2 h-5 w-5 fill-slate-700" />
                 <span className="font-medium tracking-wide">Delete list</span>
               </Button>
             </DropdownMenuItem>

@@ -38,7 +38,7 @@ export function AppHeader({ header, appIcon, appName }) {
 
   return (
     <header
-      className={`flex w-full items-center justify-between px-8 py-2 ${header}`}
+      className={`flex w-full items-center justify-between px-8 py-3 ${header}`}
     >
       <AppLogo appName={appName} appIcon={appIcon} />
       <NavigationMenu>
@@ -61,7 +61,7 @@ function MenuListStandard() {
           <Link
             to={`/login/`}
             className="my-auto select-none rounded-md px-4 py-1
-            font-sans text-xl font-semibold tracking-tight text-slate-800
+            font-sans text-lg tracking-tight text-slate-800
             transition-all duration-200 hover:text-blue-600 3xl:text-4xl
             4xl:text-6xl"
           >
@@ -73,8 +73,8 @@ function MenuListStandard() {
         <NavigationMenuLink>
           <Link
             to={`/register/`}
-            className="my-auto select-none rounded-lg bg-blue-600 px-4
-            py-2 font-sans text-xl font-semibold tracking-tight text-slate-50
+            className="my-auto select-none rounded-md bg-blue-600 px-4
+            py-2 font-sans text-lg tracking-tight text-slate-50
             transition-all duration-200 hover:bg-blue-500/90 3xl:text-4xl
             4xl:text-6xl"
           >
@@ -99,14 +99,14 @@ function MenuListMobile() {
           <SheetContent>
             <SheetHeader className="relative -left-1 -top-2">
               <SheetTitle className="mb-8 flex items-center space-x-1">
-                <AppIcon className="h-10 w-10 fill-rose-500" />
+                <AppIcon className="h-10 w-10 fill-blue-500" />
                 <h2 className="text-2xl tracking-tight text-slate-800">TODO</h2>
               </SheetTitle>
             </SheetHeader>
             <ul className="my-8 flex flex-col">
               <li className="flex">
                 <Link to={`/login/`} className="flex items-center">
-                  <LoginIcon className="mr-2 h-8 w-8 fill-rose-500" />
+                  <LoginIcon className="mr-2 h-8 w-8 fill-blue-500" />
                   <h2 className="text-2xl tracking-tight text-slate-800">
                     Log in
                   </h2>
@@ -115,7 +115,7 @@ function MenuListMobile() {
               <Separator className="my-6 bg-slate-200" />
               <li>
                 <Link to={`/register/`} className="flex items-center">
-                  <RegisterIcon className="mr-2 h-8 w-8 fill-rose-500" />
+                  <RegisterIcon className="mr-2 h-8 w-8 fill-blue-500" />
                   <h2 className="text-2xl tracking-tight text-slate-800">
                     Sign up
                   </h2>
