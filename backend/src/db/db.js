@@ -1,7 +1,5 @@
 import pgPromise from "pg-promise";
 
-import db from "#/database/database.js";
-
 const { DB_NAME, DB_USERNAME, DB_URI } = process.env;
 if (!DB_NAME || !DB_URI) {
   throw new Error("No database configuration provided.");
@@ -10,10 +8,15 @@ if (!DB_NAME || !DB_URI) {
 const pgp = pgPromise({});
 const cn = `postgres://${DB_USERNAME}@${DB_URI}/${DB_NAME}`;
 
-try {
-  const db = pgp(cn);
-} catch(error) {
-  console.log(`Error: ${error.message}`);
+function connect() {
+  let db;
+  try {
+    db = pgp(cn);
+  } catch (err) {
+    console.log(`Error: ${err.message}`);
+  }
+
+  return db;
 }
 
-export default db;
+export const db = connect();

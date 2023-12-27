@@ -1,8 +1,9 @@
+import cookieSession from "cookie-session";
 import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 
-import api from "./api/routes/index.js";
+import { mountApiRoutes } from "#api";
 
 function buildApp() {
   const app = express();
@@ -14,9 +15,19 @@ function buildApp() {
   // Security-related
   app.use(cors());
   app.use(helmet());
+  app.use(
+    cookieSession({
+      name: "session",
+      keys: [process.env.COOKIE_SECRET],
+      maxAge: process.env.COOKIE_EXPIRES_IN,
+      sameSite: "strict",
+      httpOnly: true,
+      signed: true,
+    }),
+  );
 
   // API routes
-  app.use('/api', api);
+  mountApiRoutes(app);
 
   return app;
 }

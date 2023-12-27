@@ -4,8 +4,6 @@ import app from "./app.js";
 const SERVER_PORT = process.env.SERVER_PORT;
 
 async function bootServer(port) {
-  // Server booting steps goes here!
-
   app.listen(port, () => {
     console.log(
       `\n> Server started!\n> Listening on http://localhost:${SERVER_PORT}\n`,

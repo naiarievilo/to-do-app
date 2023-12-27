@@ -1,17 +1,17 @@
-import { Router } from "express";
+import users from "./users.js";
+import todoLists from "./todolists.js";
+import todos from "./todos.js";
 
-import login from "./login.js";
-import register from "./register.js";
-
-const API_ROUTES = {
-  "/login": login,
-  "/register": register,
+const apiRoutes = {
+  "/users": users,
+  "/todolists": todoLists,
+  "/todos": todos,
 };
 
-const router = Router();
+export const mountApiRoutes = (app) => {
+  for (let route in apiRoutes) {
+    app.use(route, apiRoutes[route]);
+  }
 
-for (let route in API_ROUTES) {
-  router.use(route, API_ROUTES[route]);
-}
-
-export default router;
+  return apiRoutes;
+};
