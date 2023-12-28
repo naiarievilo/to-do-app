@@ -5,9 +5,9 @@ import { authenticateUser } from "#middlewares/authentication.js";
 
 const todos = Router();
 
-todos.post("/create", authenticaUser(), createTodo());
+todos.post("/create", authenticateUser(), createTodo());
 
-todos.put("/update", autheenticateUser(), updateTodo());
+todos.put("/update", authenticateUser(), updateTodo());
 
 todos.delete("/delete", authenticateUser(), deleteTodo());
 

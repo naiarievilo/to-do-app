@@ -1,33 +1,25 @@
 import validator from "validator";
 
-import { db } from "#db";
-
 const { escape, normalizeEmail } = validator;
 
-export function validateUserSignUp(userCreationSchema) {
+export function validateUserSignUp(signupSchema) {
   return async (req, res, next) => {
     const { email, password, confirm_password } = req.body;
 
     try {
-      userCreationSchema.validate({
+      await signupSchema.validateAsync({
         email: email,
         password: password,
         confirm_password: confirm_password,
       });
     } catch (err) {
-      console.err(err);
-      res.status(400).json({});
-    }
-
-    try {
-      const hasUser = await db.oneOrNone(
-        "SELECT * FROM users WHERE email = $1",
-        [email],
-      );
-      hasUser && res.status(400).json({});
-    } catch (err) {
       console.error(err);
-      res.status(400).json({});
+      return res.status(400).json({
+        error: {
+          name: err.name,
+          message: err.message,
+        },
+      });
     }
 
     req.body.email = normalizeEmail(escape(email));
@@ -37,18 +29,23 @@ export function validateUserSignUp(userCreationSchema) {
   };
 }
 
-export function validateUserLogin(userLoginSchema) {
-  return (req, res, next) => {
+export function validateUserLogin(loginSchema) {
+  return async (req, res, next) => {
     const { email, password } = req.body;
 
     try {
-      userLoginSchema.validate({
+      await loginSchema.validateAsync({
         email: email,
         password: password,
       });
     } catch (err) {
       console.error(err);
-      res.status(400).json({});
+      return res.status(400).json({
+        error: {
+          name: err.name,
+          message: err.message,
+        },
+      });
     }
 
     req.body.email = normalizeEmail(escape(email));

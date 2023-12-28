@@ -8,14 +8,14 @@ export function createAccessToken(data) {
     const accessToken = jwt.sign(data, JWT_SECRET, {
       expiresIn: JWT_EXPIRES_IN,
     });
-    return accessToken;
+    return { accessToken: accessToken };
   } catch (err) {
     console.error(err);
     res.status(500).json({});
   }
 }
 
-export function verifyAccessToken(accessToken) {
+export function verifyAccessToken({ ...accessToken }) {
   try {
     const decodedAccessToken = jwt.verify(accessToken, JWT_SECRET);
     return decodedAccessToken;

@@ -1,8 +1,10 @@
 import Joi from "joi";
 
 const FIELDS = {
-  email: Joi.string().email({ minDomainSegments: 2 }).required(),
-  password: Joi.string().pattern(new RegExp("^[\\w-\\.]{16,48}$/")).required(),
+  email: Joi.string()
+    .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
+    .required(),
+  password: Joi.string().pattern(new RegExp("^[\\w\\.\\W]{16,48}$")).required(),
 };
 
 export const LOGIN_SCHEMA = Joi.object({

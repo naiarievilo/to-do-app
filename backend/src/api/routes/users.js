@@ -1,7 +1,7 @@
 import Router from "express-promise-router";
 
-import { createUser, checkUser } from "../controllers/users.js";
 import { LOGIN_SCHEMA, REGISTER_SCHEMA } from "../schemas/authn-schema.js";
+import { signUpUser, loginUser, logoutUser } from "../controllers/users.js";
 import {
   validateUserSignUp,
   validateUserLogin,
@@ -9,10 +9,10 @@ import {
 
 const users = Router();
 
-users.post("/login", validateUserLogin(LOGIN_SCHEMA), checkUser());
+users.post("/signup", validateUserSignUp(REGISTER_SCHEMA), signUpUser());
 
-users.post("/signup", validateUserSignUp(REGISTER_SCHEMA), createUser());
+users.post("/login", validateUserLogin(LOGIN_SCHEMA), loginUser());
 
-users.get("/logout");
+users.get("/logout", logoutUser());
 
 export default users;

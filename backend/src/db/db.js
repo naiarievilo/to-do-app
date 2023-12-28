@@ -1,12 +1,12 @@
 import pgPromise from "pg-promise";
 
-const { DB_NAME, DB_USERNAME, DB_URI } = process.env;
+const { DB_NAME, DB_USERNAME, DB_PASSWORD, DB_URI } = process.env;
 if (!DB_NAME || !DB_URI) {
   throw new Error("No database configuration provided.");
 }
 
 const pgp = pgPromise({});
-const cn = `postgres://${DB_USERNAME}@${DB_URI}/${DB_NAME}`;
+const cn = `postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_URI}/${DB_NAME}`;
 
 function connect() {
   let db;
