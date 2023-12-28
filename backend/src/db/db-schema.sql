@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS todos (
 
 CREATE VIEW userTodoLists AS
    SELECT u.id AS user_id,
+          tl.id AS list_id,
           tl.date AS list_date,
           td.id AS todo_id,
           td.todo AS todo,
