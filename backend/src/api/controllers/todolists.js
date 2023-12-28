@@ -17,10 +17,16 @@ export function getTodaysTodoList() {
           WHERE todolist_date = $1 AND user_id = $2`,
         [todayDate, accessToken.id],
       );
-      res.status(200).json({ upcomingTodolists: todayTodos });
+      return res.status(200).json({ upcomingTodolists: todayTodos });
     } catch (err) {
       console.error(err);
-      res.status(500).json({});
+      return res.status(500).json({
+        error: {
+          name: err.name,
+          cause: err.cause,
+          message: err.message,
+        },
+      });
     }
   };
 }
@@ -44,7 +50,13 @@ export function getWeeklyTodoLists() {
         );
       } catch (err) {
         console.error(err);
-        res.status(500).json({});
+        return res.status(500).json({
+          error: {
+            name: err.name,
+            cause: err.cause,
+            message: err.message,
+          },
+        });
       }
 
       if (!weekDateTodos) {
@@ -56,7 +68,13 @@ export function getWeeklyTodoLists() {
           );
         } catch (err) {
           console.error(err);
-          res.status(500).json({});
+          return res.status(500).json({
+            error: {
+              name: err.name,
+              cause: err.cause,
+              message: err.message,
+            },
+          });
         }
       }
 
@@ -66,7 +84,7 @@ export function getWeeklyTodoLists() {
       });
     }
 
-    res.status(200).json({ upcomingTodolists: weeklyLists });
+    return res.status(200).json({ upcomingTodolists: weeklyLists });
   };
 }
 
@@ -87,7 +105,13 @@ export function getUpcomingTodoLists() {
       );
     } catch (err) {
       console.error(err);
-      res.status(500).json({});
+      return res.status(500).json({
+        error: {
+          name: err.name,
+          cause: err.cause,
+          message: err.message,
+        },
+      });
     }
 
     let upcomingTodolists = [];
@@ -117,7 +141,7 @@ export function getUpcomingTodoLists() {
       temp[listDate].push(todo);
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       data: upcomingTodolists,
     });
   };
@@ -134,10 +158,16 @@ export function createTodoList() {
         [accessToken.id, list_date],
       );
 
-      res.status(200).json({});
+      return res.status(200).json({});
     } catch (err) {
       console.error(err);
-      res.status(500).json({});
+      return res.status(500).json({
+        error: {
+          name: err.name,
+          cause: err.cause,
+          message: err.message,
+        },
+      });
     }
   };
 }
@@ -154,10 +184,16 @@ export function deleteTodoList() {
         [accessToken.id, list_date],
       );
 
-      res.status(200).json({});
+      return res.status(200).json({});
     } catch (err) {
       console.error(err);
-      res.status(500).json({});
+      return res.status(500).json({
+        error: {
+          name: err.name,
+          cause: err.cause,
+          message: err.message,
+        },
+      });
     }
   };
 }

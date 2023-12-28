@@ -17,6 +17,7 @@ export function validateUserSignUp(signupSchema) {
       return res.status(400).json({
         error: {
           name: err.name,
+          cause: err.cause,
           message: err.message,
         },
       });
@@ -43,6 +44,7 @@ export function validateUserLogin(loginSchema) {
       return res.status(400).json({
         error: {
           name: err.name,
+          cause: err.cause,
           message: err.message,
         },
       });

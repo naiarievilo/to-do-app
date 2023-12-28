@@ -11,7 +11,13 @@ export function createAccessToken(data) {
     return { accessToken: accessToken };
   } catch (err) {
     console.error(err);
-    res.status(500).json({});
+    res.status(500).json({
+      error: {
+        name: err.name,
+        cause: err.cause,
+        message: err.message,
+      },
+    });
   }
 }
 
@@ -21,6 +27,12 @@ export function verifyAccessToken({ ...accessToken }) {
     return decodedAccessToken;
   } catch (err) {
     console.error(err);
-    res.status(400).json({});
+    res.status(400).json({
+      error: {
+        name: err.name,
+        cause: err.cause,
+        message: err.message,
+      },
+    });
   }
 }

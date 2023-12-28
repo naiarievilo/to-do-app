@@ -16,10 +16,16 @@ export function createTodo() {
       );
     } catch (err) {
       console.error(err);
-      res.status(500).json({});
+      return res.status(500).json({
+        error: {
+          name: err.name,
+          cause: err.cause,
+          message: err.message,
+        },
+      });
     }
 
-    res.status(200).json({});
+    return res.status(200).json({});
   };
 }
 
@@ -39,10 +45,16 @@ export function updateTodo() {
       );
     } catch (err) {
       console.error(err);
-      res.status(500).json({});
+      return res.status(500).json({
+        error: {
+          name: err.name,
+          cause: err.cause,
+          message: err.message,
+        },
+      });
     }
 
-    res.status(200).json({});
+    return res.status(200).json({});
   };
 }
 
@@ -61,9 +73,15 @@ export function deleteTodo() {
       );
     } catch (err) {
       console.error(err);
-      res.status(500).json({});
+      return res.status(500).json({
+        error: {
+          name: err.name,
+          cause: err.cause,
+          message: err.message,
+        },
+      });
     }
 
-    res.status(200).json({});
+    return res.status(200).json({});
   };
 }

@@ -19,6 +19,7 @@ export function signUpUser() {
       return res.status(400).json({
         error: {
           name: err.name,
+          cause: err.cause,
           message: err.message,
         },
       });
@@ -35,6 +36,7 @@ export function signUpUser() {
       return res.status(500).json({
         error: {
           name: err.name,
+          cause: err.cause,
           message: err.message,
         },
       });
@@ -55,6 +57,7 @@ export function signUpUser() {
       return res.status(500).json({
         error: {
           name: err.code,
+          cause: err.cause,
           message: err.message,
         },
       });
@@ -91,7 +94,11 @@ export function loginUser() {
     } catch (err) {
       console.error(err);
       return res.status(400).json({
-        error: { name: err.name, message: err.message },
+        error: {
+          name: err.name,
+          cause: err.cause,
+          message: err.message,
+        },
       });
     }
 
@@ -109,6 +116,7 @@ export function logoutUser() {
       return res.status(500).json({
         error: {
           name: err.name,
+          cause: err.cause,
           message: err.message,
         },
       });
