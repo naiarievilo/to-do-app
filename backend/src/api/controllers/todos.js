@@ -3,17 +3,13 @@ import { errorObj, successObj } from "#utils/json.js";
 
 export function createTodo() {
   return async (req, res) => {
-    const { todo, checked, todoListDate, accessToken } = req.body;
+    const { list_id, todo, checked } = req.body;
 
     try {
       await db.none(
-        `INSERT INTO todos (todo, checked)
-         VALUES ($1, $2)
-          WHERE list_id = (SELECT id
-                             FROM todolists
-                            WHERE user_id = $3
-                              AND date = $4);`,
-        [todo, checked, accessToken.id, todoListDate],
+        `INSERT INTO todos (todo, checked, list_id)
+         VALUES ($1, $2, $3)`,
+        [todo, checked, list_id],
       );
     } catch (err) {
       console.error(err);
@@ -26,17 +22,15 @@ export function createTodo() {
 
 export function updateTodo() {
   return async (req, res) => {
-    const { todo, checked, todoListDate, accessToken } = req.body;
+    const { list_id, todo_id, todo, checked } = req.body;
 
     try {
       await db.none(
         `UPDATE todos
             SET todo = $1, checked = $2
-          WHERE list_id = (SELECT id
-                             FROM todolists
-                            WHERE user_id = $3
-                              AND date = $4)`,
-        [todo, checked, accessToken.id, todoListDate],
+          WHERE list_id = $3
+            AND id = $4`,
+        [todo, checked, list_id, todo_id],
       );
     } catch (err) {
       console.error(err);
@@ -49,16 +43,14 @@ export function updateTodo() {
 
 export function deleteTodo() {
   return async (req, res) => {
-    const { todo_id, accessToken } = req.body;
+    const { list_id, todo_id } = req.body;
 
     try {
       await db.none(
         `DELETE FROM todos
                WHERE id = $1
-                 AND list_id = (SELECT id
-                                  FROM todolists
-                                 WHERE user_id = $2)`,
-        [todo_id, accessToken.id],
+                 AND list_id = $2`,
+        [todo_id, list_id],
       );
     } catch (err) {
       console.error(err);
