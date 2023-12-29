@@ -2,6 +2,7 @@ import { compare, hash } from "bcrypt";
 
 import { db } from "#db";
 import { createAccessToken } from "#utils/jwt.js";
+import { errorObj, successObj } from "#utils/json.js";
 
 const SALT_ROUNDS = 10;
 
@@ -16,16 +17,10 @@ export function signUpUser() {
       ]);
     } catch (err) {
       console.error(err);
-      return res.status(400).json({
-        error: {
-          name: err.name,
-          cause: err.cause,
-          message: err.message,
-        },
-      });
+      return res.status(400).json(errorObj(err));
     }
     if (hasUser) {
-      return res.status(400).json({});
+      return res.status(400).json(successObj());
     }
 
     let passwordHash;
@@ -33,13 +28,7 @@ export function signUpUser() {
       passwordHash = await hash(password, SALT_ROUNDS);
     } catch (err) {
       console.error(err);
-      return res.status(500).json({
-        error: {
-          name: err.name,
-          cause: err.cause,
-          message: err.message,
-        },
-      });
+      return res.status(500).json(errorObj(err));
     }
 
     try {
@@ -51,16 +40,10 @@ export function signUpUser() {
       );
 
       req.session = createAccessToken(userInfo);
-      return res.status(200).json({});
+      return res.status(200).json(successObj());
     } catch (err) {
       console.error(err);
-      return res.status(500).json({
-        error: {
-          name: err.code,
-          cause: err.cause,
-          message: err.message,
-        },
-      });
+      return res.status(500).json(errorObj(err));
     }
   };
 }
@@ -80,30 +63,19 @@ export function loginUser() {
       !userInfo && res.status(400).json({});
     } catch (err) {
       console.error(err);
-      return res.status(400).json({
-        error: {
-          name: err.code,
-          message: err.message,
-        },
-      });
+      return res.status(400).json(errorObj(err));
     }
 
     try {
       const match = await compare(password, userInfo.hash);
-      !match && res.status(400).json({});
+      !match && res.sendStatus(400);
     } catch (err) {
       console.error(err);
-      return res.status(400).json({
-        error: {
-          name: err.name,
-          cause: err.cause,
-          message: err.message,
-        },
-      });
+      return res.status(400).json(errorObj());
     }
 
     req.session = createAccessToken(userInfo);
-    return res.status(200).json({});
+    return res.status(200).json(successObj());
   };
 }
 
@@ -113,13 +85,7 @@ export function logoutUser() {
       req.session = null;
     } catch (err) {
       console.error(err);
-      return res.status(500).json({
-        error: {
-          name: err.name,
-          cause: err.cause,
-          message: err.message,
-        },
-      });
+      return res.status(500).json(errorObj(err));
     }
 
     return res.sendStatus(200);

@@ -1,4 +1,5 @@
 import { db } from "#db";
+import { errorObj, successObj } from "#utils/json.js";
 
 export function createTodo() {
   return async (req, res) => {
@@ -16,16 +17,10 @@ export function createTodo() {
       );
     } catch (err) {
       console.error(err);
-      return res.status(500).json({
-        error: {
-          name: err.name,
-          cause: err.cause,
-          message: err.message,
-        },
-      });
+      return res.status(500).json(errorObj(err));
     }
 
-    return res.status(200).json({});
+    return res.status(200).json(successObj());
   };
 }
 
@@ -45,16 +40,10 @@ export function updateTodo() {
       );
     } catch (err) {
       console.error(err);
-      return res.status(500).json({
-        error: {
-          name: err.name,
-          cause: err.cause,
-          message: err.message,
-        },
-      });
+      return res.status(500).json(errorObj(err));
     }
 
-    return res.status(200).json({});
+    return res.status(200).json(successObj());
   };
 }
 
@@ -73,15 +62,9 @@ export function deleteTodo() {
       );
     } catch (err) {
       console.error(err);
-      return res.status(500).json({
-        error: {
-          name: err.name,
-          cause: err.cause,
-          message: err.message,
-        },
-      });
+      return res.status(500).json(errorObj(err));
     }
 
-    return res.status(200).json({});
+    return res.status(200).json(successObj());
   };
 }

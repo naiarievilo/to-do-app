@@ -1,4 +1,4 @@
-/* 
+/*
  * Format records retrieved from pg-promise from:
  *
  *      [ {todo1Props}, {todo2Props}, {todo3Props} ...]
@@ -27,17 +27,17 @@ export function formatTodoLists(records) {
       temp = {
         listId: listId,
         listDate: listDate,
-        todos: [todo]
+        todos: [todo],
       };
       continue;
-    };
+    }
 
     if (temp.listId !== listId) {
       todoLists.push(temp);
       temp = {
         listId: listId,
         listDate: listDate,
-        todos: [todo]
+        todos: [todo],
       };
       continue;
     }

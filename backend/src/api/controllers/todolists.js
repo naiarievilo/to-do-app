@@ -4,29 +4,41 @@ import {
   getUpcomingMonday,
 } from "#utils/date.js";
 import { db } from "#db";
+import { formatTodoLists } from "#utils/data.js";
+import { errorObj, successObj } from "#utils/json.js";
 
 export function getTodaysTodoList() {
   return async (req, res) => {
     const { accessToken } = req.body;
     const todayDate = convertToPsqlDate(Date.now());
 
+    let todayTodos;
     try {
-      const todayTodos = await db.one(
-        `SELECT todo_id, todo, checked
+      todayTodos = await db.oneOrNone(
+        `SELECT list_id, list_date, todo_id, todo, checked
            FROM userTodoLists
-          WHERE todolist_date = $1 AND user_id = $2`,
+          WHERE list_date = $1 AND user_id = $2`,
         [todayDate, accessToken.id],
       );
-      return res.status(200).json({ upcomingTodolists: todayTodos });
     } catch (err) {
       console.error(err);
-      return res.status(500).json({
-        error: {
-          name: err.name,
-          cause: err.cause,
-          message: err.message,
-        },
-      });
+      return res.status(500).json(errorObj(err));
+    }
+    if (todayTodos) {
+      todayTodos = formatTodoLists(todayTodos);
+      return res.status(200).json(successObj(todayTodos));
+    }
+
+    try {
+      await db.none(
+        `INSERT INTO todolists (user_id, date)
+         VALUES ($1, $2)`,
+        [accessToken.id, todayDate],
+      );
+      return res.status(200).json(successObj());
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json(errorObj(err));
     }
   };
 }
@@ -41,7 +53,7 @@ export function getWeeklyTodoLists() {
       let weekDateTodos;
       try {
         weekDateTodos = await db.manyOrNone(
-          `SELECT todo_id, todo, checked
+          `SELECT list_id, list_date, todo_id, todo, checked
              FROM userTodoLists
             WHERE user_id = $1
               AND list_date = $2
@@ -50,41 +62,32 @@ export function getWeeklyTodoLists() {
         );
       } catch (err) {
         console.error(err);
-        return res.status(500).json({
-          error: {
-            name: err.name,
-            cause: err.cause,
-            message: err.message,
-          },
+        return res.status(500).json(errorObj(err));
+      }
+      if (weekDateTodos) {
+        weekDateTodos = formatTodoLists(weekDateTodos)[0];
+        weeklyLists.push(weekDateTodos);
+        continue;
+      }
+
+      try {
+        weekDateTodos = await db.none(
+          `INSERT INTO todolists (user_id, date)
+           VALUES ($1, $2)
+           RETURNING list_id, list_date`,
+          [accessToken.id, weekDate],
+        );
+        weeklyLists.push({
+          listId: weekDateTodos.list_id,
+          listDate: weekDateTodos.list_date
         });
+      } catch (err) {
+        console.error(err);
+        return res.status(500).json(errorObj(err));
       }
-
-      if (!weekDateTodos) {
-        try {
-          await db.none(
-            `INSERT INTO todolists (user_id, date)
-             VALUES ($1, $2)`,
-            [accessToken.id, weekDate],
-          );
-        } catch (err) {
-          console.error(err);
-          return res.status(500).json({
-            error: {
-              name: err.name,
-              cause: err.cause,
-              message: err.message,
-            },
-          });
-        }
-      }
-
-      weeklyLists.push({
-        list_date: weekDate,
-        upcomingTodolists: weekDateTodos,
-      });
     }
 
-    return res.status(200).json({ upcomingTodolists: weeklyLists });
+    return res.status(200).json(successObj(weeklyLists));
   };
 }
 
@@ -96,7 +99,7 @@ export function getUpcomingTodoLists() {
     let todolists;
     try {
       todolists = await db.ManyOrNone(
-        `SELECT list_date, todo_id, todo, checked
+        `SELECT list_id, list_date, todo_id, todo, checked
            FROM userTodoLists
           WHERE user_id = $1
             AND list_date >= $2::date
@@ -105,45 +108,12 @@ export function getUpcomingTodoLists() {
       );
     } catch (err) {
       console.error(err);
-      return res.status(500).json({
-        error: {
-          name: err.name,
-          cause: err.cause,
-          message: err.message,
-        },
-      });
+      return res.status(500).json(errorObj(err));
     }
 
-    let upcomingTodolists = [];
-    let temp = {};
-    let lastListDate;
-    for (const todolist of todolists) {
-      const listDate = todolist.list_date;
-      const todo = {
-        todo_id: todolist.todo_id,
-        todo: todolist.todo,
-        checked: todolist.checked,
-      };
+    const upcomingTodoLists = formatTodoLists(todolists);
 
-      if (lastListDate !== undefined && lastListDate !== listDate) {
-        upcomingTodolists.push({
-          date: lastListDate,
-          todos: temp[lastListDate],
-        });
-      }
-
-      if (!temp[listDate]) {
-        temp[listDate] = [todo];
-        lastListDate = listDate;
-        continue;
-      }
-
-      temp[listDate].push(todo);
-    }
-
-    return res.status(200).json({
-      data: upcomingTodolists,
-    });
+    return res.status(200).json(successObj(upcomingTodoLists));
   };
 }
 
@@ -157,18 +127,12 @@ export function createTodoList() {
          VALUES ($1, $2)`,
         [accessToken.id, list_date],
       );
-
-      return res.status(200).json({});
     } catch (err) {
       console.error(err);
-      return res.status(500).json({
-        error: {
-          name: err.name,
-          cause: err.cause,
-          message: err.message,
-        },
-      });
+      return res.status(500).json(errorObj(err));
     }
+
+    return res.status(200).json(successObj());
   };
 }
 
@@ -183,17 +147,11 @@ export function deleteTodoList() {
                  AND date = $2`,
         [accessToken.id, list_date],
       );
-
-      return res.status(200).json({});
     } catch (err) {
       console.error(err);
-      return res.status(500).json({
-        error: {
-          name: err.name,
-          cause: err.cause,
-          message: err.message,
-        },
-      });
+      return res.status(500).json(errorObj(err));
     }
+
+    return res.status(200).json(successObj());
   };
 }
