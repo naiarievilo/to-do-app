@@ -10,17 +10,24 @@ export function signUpUser() {
   return async (req, res) => {
     const { email, password } = req.body;
 
-    let hasUser;
     try {
-      hasUser = await db.oneOrNone("SELECT * FROM users WHERE email = $1", [
-        email,
-      ]);
+      const hasUser = await db.oneOrNone(
+        `SELECT * 
+           FROM users
+          WHERE email = $1`,
+        [email],
+      );
+
+      if (hasUser) {
+        return res.status(400).json(
+          errorObj({
+            message: "Email is already taken.",
+          }),
+        );
+      }
     } catch (err) {
       console.error(err);
       return res.status(400).json(errorObj(err));
-    }
-    if (hasUser) {
-      return res.status(400).json(successObj());
     }
 
     let passwordHash;
@@ -60,7 +67,9 @@ export function loginUser() {
           WHERE email = $1`,
         [email],
       );
-      !userInfo && res.status(400).json({});
+      if (!userInfo) {
+        return res.status(400).json({});
+      }
     } catch (err) {
       console.error(err);
       return res.status(400).json(errorObj(err));
@@ -68,7 +77,9 @@ export function loginUser() {
 
     try {
       const match = await compare(password, userInfo.hash);
-      !match && res.sendStatus(400);
+      if (!match) {
+        return res.sendStatus(400);
+      }
     } catch (err) {
       console.error(err);
       return res.status(400).json(errorObj());
