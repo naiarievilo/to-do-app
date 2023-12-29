@@ -25,7 +25,9 @@ export function getWeekDates() {
 
   let weekDates = [];
   let weekDay = new Date(thisMonday);
-  const nextMonday = new Date(thisMonday).setDate(thisMonday.getDate() + 7);
+  const nextMonday = new Date(
+    new Date(thisMonday).setDate(thisMonday.getDate() + 7),
+  );
 
   while (weekDay.getDate() !== nextMonday.getDate()) {
     weekDates.push(convertToPsqlDate(weekDay));

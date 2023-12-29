@@ -17,17 +17,20 @@ export function formatTodoLists(records) {
   for (const record of records) {
     const listId = record.list_id;
     const listDate = record.list_date;
-    const todo = {
-      todoId: record.todo_id,
-      todo: record.todo,
-      checked: record.checked,
-    };
+    let todo;
+    if (record.todo_id) {
+      todo = {
+        todoId: record.todo_id,
+        todo: record.todo,
+        checked: record.checked,
+      }
+    }
 
     if (!temp) {
       temp = {
         listId: listId,
         listDate: listDate,
-        todos: [todo],
+        todos: (todo ? [todo] : []),
       };
       continue;
     }
@@ -37,7 +40,7 @@ export function formatTodoLists(records) {
       temp = {
         listId: listId,
         listDate: listDate,
-        todos: [todo],
+        todos: (todo ? [todo] : []),
       };
       continue;
     }
