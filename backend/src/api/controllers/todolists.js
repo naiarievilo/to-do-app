@@ -17,7 +17,8 @@ export function getTodaysTodoList() {
       todayTodos = await db.manyOrNone(
         `SELECT list_id, list_date, todo_id, todo, checked
            FROM userTodoLists
-          WHERE list_date = $1 AND user_id = $2`,
+          WHERE list_date = $1 AND user_id = $2
+       ORDER BY list_date, todo_id`,
         [todayDate, accessToken.id],
       );
     } catch (err) {
@@ -58,7 +59,7 @@ export function getWeeklyTodoLists() {
              FROM userTodoLists
             WHERE user_id = $1
               AND list_date = $2
-         ORDER BY list_date`,
+         ORDER BY list_date, todo_id`,
           [accessToken.id, weekDate],
         );
         if (weekDateTodos.length) {
@@ -107,7 +108,7 @@ export function getUpcomingTodoLists() {
            FROM userTodoLists
           WHERE user_id = $1
             AND list_date >= $2
-       ORDER BY list_date`,
+       ORDER BY list_date, todo_id`,
         [accessToken.id, upcomingMonday],
       );
     } catch (err) {
