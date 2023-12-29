@@ -1,3 +1,4 @@
+import { errorObj } from "#utils/json.js";
 import { verifyAccessToken } from "#utils/jwt.js";
 
 export function authenticateUser() {
@@ -8,13 +9,7 @@ export function authenticateUser() {
       next();
     } catch (err) {
       console.error(err);
-      res.status(400).json({
-        error: {
-          name: err.name,
-          cause: err.cause,
-          message: err.message,
-        },
-      });
+      res.status(401).json(errorObj(err));
     }
   };
 }

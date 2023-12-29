@@ -11,28 +11,16 @@ export function createAccessToken(data) {
     return { accessToken: accessToken };
   } catch (err) {
     console.error(err);
-    res.status(500).json({
-      error: {
-        name: err.name,
-        cause: err.cause,
-        message: err.message,
-      },
-    });
+    throw err; 
   }
 }
 
-export function verifyAccessToken({ ...accessToken }) {
+export function verifyAccessToken(accessToken) {
   try {
     const decodedAccessToken = jwt.verify(accessToken, JWT_SECRET);
     return decodedAccessToken;
   } catch (err) {
     console.error(err);
-    res.status(400).json({
-      error: {
-        name: err.name,
-        cause: err.cause,
-        message: err.message,
-      },
-    });
+    throw err;
   }
 }
