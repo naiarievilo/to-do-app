@@ -11,7 +11,7 @@ export function createAccessToken(data) {
     return { accessToken: accessToken };
   } catch (err) {
     console.error(err);
-    throw err; 
+    throw err;
   }
 }
 

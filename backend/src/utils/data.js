@@ -23,14 +23,14 @@ export function formatTodoLists(records) {
         todoId: record.todo_id,
         todo: record.todo,
         checked: record.checked,
-      }
+      };
     }
 
     if (!temp) {
       temp = {
         listId: listId,
         listDate: listDate,
-        todos: (todo ? [todo] : []),
+        todos: todo ? [todo] : [],
       };
       continue;
     }
@@ -40,7 +40,7 @@ export function formatTodoLists(records) {
       temp = {
         listId: listId,
         listDate: listDate,
-        todos: (todo ? [todo] : []),
+        todos: todo ? [todo] : [],
       };
       continue;
     }
