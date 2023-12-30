@@ -25,7 +25,7 @@ export function RegisterForm() {
           inputUtils="mb-0.5"
         />
         <FormField
-          identifier="confirmPassword"
+          identifier="confirm_password"
           label="Confirm password"
           isRequired={true}
           type="password"

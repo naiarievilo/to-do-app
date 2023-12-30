@@ -5,7 +5,7 @@ export function FormButton({ label }) {
     <button
       type="submit"
       className="mt-4 w-full self-center rounded-lg bg-blue-500 px-4 py-2
-      text-lg text-white shadow-sm hover:bg-blue-400"
+      text-lg text-white shadow-sm hover:bg-blue-600"
     >
       {label}
     </button>
