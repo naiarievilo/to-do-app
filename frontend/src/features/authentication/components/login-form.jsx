@@ -1,30 +1,44 @@
-import { Form } from "react-router-dom";
+import { useState } from "react";
 
 import { FormButton } from "./form-button.jsx";
 import { FormContainer } from "../layout/form-container.jsx";
 import { FormField } from "./form-field.jsx";
 import { FormNote } from "./form-note.jsx";
-import { FormTitle } from "./form-title.jsx";
 
 export function LoginForm() {
+  const { email, setEmail } = useState("");
+  const { password, setPassword } = useState("");
+
+  function handleInputChange(event, setter) {
+    event.stopPropagation();
+    setter(event.value);
+  }
+
+  function handleSubmit() {
+    alert("Submitted");
+  }
+
   return (
     <FormContainer>
-      <FormTitle title="Sign in to TODO" />
-      <Form method="post" className="flex w-9/12 flex-col">
+      <form onSubmit={handleSubmit} className="flex w-9/12 flex-col">
         <FormField
           identifier="email"
           label="Email"
           isRequired={true}
           type="text"
+          value={email}
+          onChange={(event) => handleInputChange(event, setEmail)}
         />
         <FormField
           identifier="password"
           label="Password"
           isRequired={true}
           type="password"
+          value={password}
+          onChange={(event) => handleInputChange(event, setPassword)}
         />
         <FormButton label="Sign in" />
-      </Form>
+      </form>
       <FormNote
         note="Don't have an account?"
         link={`/register/`}
