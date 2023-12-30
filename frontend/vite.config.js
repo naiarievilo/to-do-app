@@ -13,4 +13,11 @@ export default defineConfig({
   css: {
     postcss: resolve(__dirname, "postcss.config.js"),
   },
+  server: {
+    proxy: {
+      "/users": "http://localhost:3000",
+      "/todolists": "http://localhost:3000",
+      "/todos": "http://localhost:3000"
+    }
+  }
 });

@@ -7,7 +7,7 @@ import {
   Home,
   HomeIndex,
   Login,
-  Register,
+  SignUp,
   Root,
   RootIndex,
   Today,
@@ -29,8 +29,8 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "register/",
-        element: <Register />,
+        path: "signup/",
+        element: <SignUp />,
       },
       {
         path: "home/",

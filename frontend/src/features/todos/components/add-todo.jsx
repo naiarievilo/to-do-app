@@ -66,13 +66,11 @@ function Legend({ isEmpty }) {
   }
 
   return (
-    <div
-      className="w-80 flex space-x-3 items-center justify-center text-slate-500"
-    >
+    <div className="flex w-80 items-center justify-center space-x-3 text-slate-500">
       <small>
         <kbd
-          className="bg-slate-50 border-[1px] border-slate-400/40 p-1 rounded-md
-          text-xs text-slate-500 mr-1 font-semibold shadow-sm"
+          className="mr-1 rounded-md border-[1px] border-slate-400/40 bg-slate-50
+          p-1 text-xs font-semibold text-slate-500 shadow-sm"
         >
           Enter
         </kbd>
@@ -80,11 +78,10 @@ function Legend({ isEmpty }) {
       </small>
       <small>
         <kbd
-          className="bg-slate-50 border-[1px] border-slate-400/50 p-1 rounded-md
-          text-xs text-slate-500 mr-1 font-semibold shadow-sm"
+          className="mr-1 rounded-md border-[1px] border-slate-400/50 bg-slate-50
+          p-1 text-xs font-semibold text-slate-500 shadow-sm"
         >
           Esc
-
         </kbd>
         Cancel
       </small>
@@ -92,5 +89,5 @@ function Legend({ isEmpty }) {
   );
 }
 Legend.propTypes = {
-  isEmpty: PropTypes.bool
+  isEmpty: PropTypes.bool,
 };

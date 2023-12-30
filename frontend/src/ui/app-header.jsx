@@ -72,7 +72,7 @@ function MenuListStandard() {
       <NavigationMenuItem>
         <NavigationMenuLink>
           <Link
-            to={`/register/`}
+            to={`/signup/`}
             className="my-auto select-none rounded-md bg-blue-600 px-4
             py-2 font-sans text-lg tracking-tight text-slate-50
             transition-all duration-200 hover:bg-blue-500/90 3xl:text-4xl
@@ -114,7 +114,7 @@ function MenuListMobile() {
               </li>
               <Separator className="my-6 bg-slate-200" />
               <li>
-                <Link to={`/register/`} className="flex items-center">
+                <Link to={`/signup/`} className="flex items-center">
                   <RegisterIcon className="mr-2 h-8 w-8 fill-blue-500" />
                   <h2 className="text-2xl tracking-tight text-slate-800">
                     Sign up

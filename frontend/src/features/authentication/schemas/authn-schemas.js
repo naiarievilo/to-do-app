@@ -11,7 +11,7 @@ export const LOGIN_SCHEMA = Joi.object({
   ...FIELDS,
 });
 
-export const REGISTER_SCHEMA = Joi.object({
+export const SIGNUP_SCHEMA = Joi.object({
   ...FIELDS,
   confirm_password: Joi.ref("password"),
 });

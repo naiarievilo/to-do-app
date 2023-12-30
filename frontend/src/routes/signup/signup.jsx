@@ -1,11 +1,10 @@
+import { AppHeader } from "@/ui/app-header.jsx";
 import {
   AuthBackground,
   RegisterForm,
 } from "@/features/authentication/index.js";
 
-import { AppHeader } from "@/ui/app-header.jsx";
-
-export function Register() {
+export function SignUp() {
   return (
     <>
       <AuthBackground />
