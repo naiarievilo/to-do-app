@@ -4,7 +4,7 @@ const FIELDS = {
   email: Joi.string()
     .email()
     .required(),
-  password: Joi.string().pattern(new RegExp("^[\\w\\.\\W]{16,}$")).required(),
+  password: Joi.string().required(),
 };
 
 export const LOGIN_SCHEMA = Joi.object({
