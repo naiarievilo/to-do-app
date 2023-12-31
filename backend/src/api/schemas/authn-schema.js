@@ -2,7 +2,7 @@ import Joi from "joi";
 
 const FIELDS = {
   email: Joi.string()
-    .email({ minDomainSegments: 2 })
+    .email()
     .required(),
   password: Joi.string().pattern(new RegExp("^[\\w\\.\\W]{16,}$")).required(),
 };
