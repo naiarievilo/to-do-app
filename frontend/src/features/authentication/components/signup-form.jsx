@@ -1,3 +1,4 @@
+import { redirect } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -14,6 +15,7 @@ import { Input } from "@/ui/input.jsx";
 import { FormContainer } from "../layout/form-container.jsx";
 
 import { signUpSchema } from "../schemas/authn.js";
+import { signUpUser } from "../api/users.js";
 
 export function SignUpForm() {
   const form = useForm({
@@ -24,6 +26,16 @@ export function SignUpForm() {
       confirm_password: "",
     },
   });
+
+  async function onSubmit(formData) {
+    try {
+      await signUpUser(formData);
+      localStorage.setItem("session", "true");
+      redirect("/home");
+    } catch (err) {
+      alert(err.message);
+    }
+  }
 
   return (
     <FormContainer>
@@ -83,6 +95,3 @@ export function SignUpForm() {
   );
 }
 
-function onSubmit(formData) {
-  console.log(formData);
-}

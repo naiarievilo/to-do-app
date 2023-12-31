@@ -1,16 +1,13 @@
 import axios from "axios";
 
 export async function signUpUser(formData) {
-  const response = await axios.post("/users/signup", formData);
-  return response;
+  return await axios.post("/users/signup", formData);
 }
 
-export async function loginUser(formData) {
-  const response = await axios.post("/users/login", formData);
-  return response;
+export async function logInUser(formData) {
+  return await axios.post("/users/login", formData);
 }
 
-export async function logoutUser() {
-  const response = await axios.get("/users/logout");
-  return response;
+export async function logOutUser() {
+  return await axios.get("/users/logout");
 }

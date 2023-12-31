@@ -1,3 +1,4 @@
+import { redirect } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -14,6 +15,7 @@ import { Input } from "@/ui/input.jsx";
 import { FormContainer } from "../layout/form-container.jsx";
 
 import { loginSchema } from "../schemas/authn.js";
+import { logInUser } from "../api/users.js";
 
 export function LogInForm() {
   const form = useForm({
@@ -24,6 +26,16 @@ export function LogInForm() {
       confirm_password: "",
     },
   });
+
+  async function onSubmit(formData) {
+    try {
+      await logInUser(formData);
+      localStorage.setItem("session", "true");
+      redirect("/home");
+    } catch (err) {
+      alert("err.message");
+    }
+  }
 
   return (
     <FormContainer>
@@ -70,6 +82,3 @@ export function LogInForm() {
   );
 }
 
-function onSubmit(formData) {
-  console.log(formData);
-}
