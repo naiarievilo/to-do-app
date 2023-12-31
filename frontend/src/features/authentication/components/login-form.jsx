@@ -40,7 +40,7 @@ export function LogInForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col justify-center space-y-6"
+        className="flex flex-col justify-center space-y-4"
       >
         <FormField
           control={form.control}

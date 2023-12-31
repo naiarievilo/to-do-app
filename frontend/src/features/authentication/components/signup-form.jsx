@@ -40,7 +40,7 @@ export function SignUpForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col justify-center w-full space-y-6"
+        className="flex flex-col justify-center w-full space-y-4"
       >
         <FormField
           control={form.control}
@@ -84,7 +84,7 @@ export function SignUpForm() {
         <Button
           type="submit"
           size="lg"
-          className="bg-blue-600 hover:bg-blue-700"
+          className="bg-blue-600 hover:bg-blue-700 mt-4"
         >
           Sign Up
         </Button>
