@@ -5,7 +5,6 @@ import {
   TacticIcon,
   ViewDayIcon,
   ViewWeekIcon,
-  ViewMonthIcon,
 } from "@/assets/index.js";
 import { loginRequired } from "@/lib/utils.js";
 
@@ -14,7 +13,7 @@ export function HomeIndex() {
   loginRequired(route);
 
   return (
-    <section className="flex h-full w-full flex-col items-center justify-center">
+    <section className="flex h-full w-full bg-index flex-col items-center justify-center">
       <header className="flex items-center justify-center space-x-8">
         <TacticIcon className="h-24 w-24 fill-blue-500" />
         <p className="text-5xl font-medium tracking-tight text-slate-700">
@@ -39,18 +38,6 @@ export function HomeIndex() {
           >
             <ViewWeekIcon
               className="transtition-all h-8 w-8 fill-blue-600
-              duration-200 group-hover:fill-blue-500"
-            />
-          </TodoPanelButton>
-          <TodoPanelButton
-            button="group hover:bg-blue-100 hover:transition-all"
-            labelClass="text-slate-700 group-hover:text-blue-600
-            group-hover:bg-blue-1000"
-            labelName="Look upcoming to-dos"
-            to="upcoming/"
-          >
-            <ViewMonthIcon
-              className="h-8 w-8 fill-slate-600 transition-all
               duration-200 group-hover:fill-blue-500"
             />
           </TodoPanelButton>

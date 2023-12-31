@@ -5,7 +5,4 @@ export { TodoContainer } from "./layout/todo-container.jsx";
 export {
   getTodaysTodoList,
   getWeeklyTodoLists,
-  getUpcomingTodoLists,
-  createTodoList,
-  deleteTodoList
 } from "./api/todolists.js";

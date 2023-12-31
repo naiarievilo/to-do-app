@@ -4,5 +4,4 @@ export { HomeIndex } from "./home/home.index.jsx";
 export { Root } from "./root/root.jsx";
 export { RootIndex } from "./root/root.index.jsx";
 export { Today, todayLoader } from "./home/today/index.js";
-export { Upcoming } from "./home/upcoming/upcoming.jsx";
 export { Week } from "./home/week/week.jsx";

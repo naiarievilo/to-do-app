@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
 
-import { TodayIcon, UpcomingIcon, WeekIcon } from "@/assets/index.js";
+import { TodayIcon, WeekIcon } from "@/assets/index.js";
 
 export function TodoMenu() {
   return (
@@ -19,9 +19,6 @@ export function TodoMenu() {
             </MenuItem>
             <MenuItem label="This week" to="week/">
               <WeekIcon className="mr-2 h-5 w-5 select-none" />
-            </MenuItem>
-            <MenuItem label="Upcoming" to="upcoming/">
-              <UpcomingIcon className="mr-2 h-5 w-5 select-none" />
             </MenuItem>
           </ul>
         </section>

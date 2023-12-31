@@ -10,7 +10,6 @@ import {
   RootIndex,
   Today,
   todayLoader,
-  Upcoming,
   Week,
 } from "@/routes/index.js";
 
@@ -36,10 +35,6 @@ const router = createBrowserRouter([
           {
             path: "week/",
             element: <Week />,
-          },
-          {
-            path: "upcoming/",
-            element: <Upcoming />,
           },
         ],
       },
