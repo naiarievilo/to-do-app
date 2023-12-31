@@ -62,7 +62,7 @@ export function SignUpForm() {
             <FormItem>
               <FormLabel required={true}>Password</FormLabel>
               <FormControl>
-                <Input type="password" min={12} {...field} />
+                <Input type="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -75,7 +75,7 @@ export function SignUpForm() {
             <FormItem>
               <FormLabel required={true}>Confirm password</FormLabel>
               <FormControl>
-                <Input type="password" min={12} {...field} />
+                <Input type="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -84,7 +84,7 @@ export function SignUpForm() {
         <Button
           type="submit"
           size="lg"
-          className="bg-blue-900"
+          className="bg-blue-600 hover:bg-blue-700"
         >
           Sign Up
         </Button>

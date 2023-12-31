@@ -23,7 +23,7 @@ export function AuthnPanel({ className }) {
     <Tabs
       defaultValue="login"
       className={cn(
-        "w-[400px]",
+        "w-[320px] 2xl:w-[400px]",
         className
       )}
     >
@@ -32,27 +32,27 @@ export function AuthnPanel({ className }) {
         <TabsTrigger value="signup" className="rounded-r-md">Sign Up</TabsTrigger>
       </TabsList>
       <TabsContent value="login">
-        <Card className="flex flex-col justify-center px-8">
+        <Card className="flex flex-col justify-center px-4 pt-2 pb-8">
           <CardHeader>
-            <CardTitle className="text-3xl">Log in to TODO</CardTitle>
-            <CardDescription className="text-md">
+            <CardTitle className="text-4xl text-slate-800 mb-1">Log in to TODO</CardTitle>
+            <CardDescription className="text-lg text-slate-700/90">
               Get back to planning!
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-2">
+          <CardContent className="mt-4">
             <LogInForm />
           </CardContent>
         </Card>
       </TabsContent>
       <TabsContent value="signup">
-        <Card>
+        <Card className="flex flex-col justify-center px-4 pt-2 pb-8">
           <CardHeader>
-            <CardTitle>Sign up to TODO</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-4xl text-slate-800 mb-1">Sign up to TODO</CardTitle>
+            <CardDescription className="text-lg text-slate-700/90">
               Sign up and start planning your life!
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-2">
+          <CardContent className="mt-4">
             <SignUpForm />
           </CardContent>
         </Card>

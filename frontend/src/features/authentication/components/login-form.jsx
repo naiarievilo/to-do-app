@@ -62,7 +62,7 @@ export function LogInForm() {
             <FormItem>
               <FormLabel required={true}>Password</FormLabel>
               <FormControl>
-                <Input type="password" min={12} {...field} />
+                <Input type="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -71,6 +71,7 @@ export function LogInForm() {
         <Button
           type="submit"
           size="lg"
+          className="bg-blue-600 hover:bg-blue-700"
         >
           Log In
         </Button>
