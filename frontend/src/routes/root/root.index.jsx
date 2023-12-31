@@ -2,14 +2,15 @@ import { useLocation } from "react-router-dom";
 
 import { AppHeader } from "@/ui/app-header.jsx";
 import { loginRequired } from "@/lib/utils.js";
+import { AuthnPanel } from "@/features/authentication/index.js";
 
 export function RootIndex() {
   const route = useLocation().pathname;
   loginRequired(route);
 
   return (
-    <main>
-      <section className="mb-16 flex flex-col">
+    <main className="h-full w-full flex flex-col xl:flex-row">
+      <section className="grow mb-16 mx-4 mt-4 flex flex-col xl:mr-16">
         <AppHeader />
         <h2
           className="md:mt-34 mx-4 mb-16 mt-20 text-center
@@ -27,6 +28,9 @@ export function RootIndex() {
           Keep track of your weekly tasks, enhance your focus, and boost your
           productivity
         </p>
+      </section>
+      <section className="flex justify-center bg-index xl:w-6/12 xl:overflow-y-hidden">
+        <AuthnPanel className="my-32 xl:my-36" />
       </section>
     </main>
   );
