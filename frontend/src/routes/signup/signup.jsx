@@ -1,7 +1,7 @@
 import { AppHeader } from "@/ui/app-header.jsx";
 import {
   AuthBackground,
-  RegisterForm,
+  SignUpForm,
 } from "@/features/authentication/index.js";
 
 export function SignUp() {
@@ -10,7 +10,7 @@ export function SignUp() {
       <AuthBackground />
       <main className="min-w-screen flex min-h-screen flex-col">
         <AppHeader appName="text-slate-100" />
-        <RegisterForm />
+        <SignUpForm />
       </main>
     </>
   );

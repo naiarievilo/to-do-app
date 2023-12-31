@@ -1,10 +1,10 @@
-import { forwardRef } from "react";
+import { forwardRef, createContext, useContext, useId } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { Controller, FormProvider, useFormContext } from "react-hook-form";
 import { PropTypes } from "prop-types";
 
-import { cn } from "@/lib/utils";
-import { Label } from "src/ui/label";
+import { cn } from "@/lib/utils.js";
+import { Label } from "@/ui/label.jsx";
 
 const Form = FormProvider;
 
@@ -18,7 +18,8 @@ const FormField = ({ ...props }) => {
   );
 };
 FormField.propTypes = {
-  props: PropTypes.obj,
+  name: PropTypes.string,
+  props: PropTypes.obj
 };
 
 const useFormField = () => {
