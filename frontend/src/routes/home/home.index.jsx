@@ -24,7 +24,7 @@ export function HomeIndex() {
       <nav className="mt-12">
         <ul className="flex flex-col items-start justify-start space-y-10">
           <TodoPanelButton
-            button="bg-blue-500 hover:bg-blue-600"
+            button="bg-blue-600 hover:bg-blue-500"
             labelClass="text-slate-50"
             labelName="Check daily to-dos"
             to="today/"
@@ -32,19 +32,20 @@ export function HomeIndex() {
             <ViewDayIcon className="h-8 w-8 fill-slate-50" />
           </TodoPanelButton>
           <TodoPanelButton
-            button="group border-2 border-blue-500 hover:border-blue-600"
-            labelClass="text-blue-500 group-hover:text-blue-600"
+            button="group border-2 border-blue-600 hover:border-blue-500"
+            labelClass="text-blue-600 group-hover:text-blue-500"
             labelName="View to-dos for the week"
             to="week/"
           >
             <ViewWeekIcon
-              className="transtition-all h-8 w-8 fill-blue-500
-              duration-200 group-hover:fill-blue-600"
+              className="transtition-all h-8 w-8 fill-blue-600
+              duration-200 group-hover:fill-blue-500"
             />
           </TodoPanelButton>
           <TodoPanelButton
-            button="group shadow-none"
-            labelClass="text-slate-700 group-hover:text-blue-500"
+            button="group hover:bg-blue-100 hover:transition-all"
+            labelClass="text-slate-700 group-hover:text-blue-600
+            group-hover:bg-blue-1000"
             labelName="Look upcoming to-dos"
             to="upcoming/"
           >
@@ -64,7 +65,7 @@ function TodoPanelButton({ button, children, labelClass, labelName, to }) {
     <li className="w-full">
       <Link
         className={`flex w-full items-center justify-start space-x-4 rounded-2xl
-        px-12 py-4 shadow-sm transition-all duration-200 ${button}`}
+        px-12 py-4 transition-all duration-200 ${button}`}
         to={to}
       >
         {children}
