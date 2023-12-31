@@ -21,3 +21,11 @@ export function loginRequired(route) {
     return redirect("/login");
   }
 }
+
+export function isLoggedIn() {
+  if (localStorage.getItem("session")) {
+    return true;
+  }
+
+  return false;
+}
