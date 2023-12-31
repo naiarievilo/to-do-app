@@ -30,7 +30,7 @@ export function SignUpForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="my-4 w-10/12 space-y-6"
+          className="flex flex-col justify-center m-8 w-10/12 space-y-6"
         >
           <FormField
             control={form.control}
@@ -39,7 +39,7 @@ export function SignUpForm() {
               <FormItem>
                 <FormLabel required={true}>Email</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input type="email" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -52,7 +52,7 @@ export function SignUpForm() {
               <FormItem>
                 <FormLabel required={true}>Password</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input type="password" min={12} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -65,7 +65,7 @@ export function SignUpForm() {
               <FormItem>
                 <FormLabel required={true}>Confirm password</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input type="password" min={12} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -73,6 +73,7 @@ export function SignUpForm() {
           />
           <Button
             type="submit"
+            size="lg"
           >
             Sign Up
           </Button>
