@@ -8,7 +8,7 @@ export function cn(...inputs) {
 }
 
 export function redirect(route) {
-  return window.location.replace(APP_URL+route);
+  return window.location.replace(APP_URL + route);
 }
 
 export function loginRequired(route) {

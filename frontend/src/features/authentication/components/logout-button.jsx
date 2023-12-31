@@ -13,11 +13,10 @@ export function LogoutButton() {
     } catch (err) {
       alert(err.message);
     }
-
   }
   return (
     <Button size="icon" className="rounded-full" onClick={handleClick}>
-      <LogoutIcon className="fill-slate-50 w-10 h-10" />
+      <LogoutIcon className="h-10 w-10 fill-slate-50" />
     </Button>
   );
 }

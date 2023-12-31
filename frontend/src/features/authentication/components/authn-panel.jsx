@@ -7,12 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/ui/card.jsx";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/ui/tabs.jsx"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs.jsx";
 import { cn } from "@/lib/utils.js";
 
 import { LogInForm } from "./login-form.jsx";
@@ -22,19 +17,22 @@ export function AuthnPanel({ className }) {
   return (
     <Tabs
       defaultValue="login"
-      className={cn(
-        "w-[320px] 2xl:w-[400px]",
-        className
-      )}
+      className={cn("w-[320px] 2xl:w-[400px]", className)}
     >
-      <TabsList className="grid w-full grid-cols-2 shadow-sm border border-blue-900">
-        <TabsTrigger value="login" className="rounded-l-md">Log In</TabsTrigger>
-        <TabsTrigger value="signup" className="rounded-r-md">Sign Up</TabsTrigger>
+      <TabsList className="grid w-full grid-cols-2 border border-blue-900 shadow-sm">
+        <TabsTrigger value="login" className="rounded-l-md">
+          Log In
+        </TabsTrigger>
+        <TabsTrigger value="signup" className="rounded-r-md">
+          Sign Up
+        </TabsTrigger>
       </TabsList>
       <TabsContent value="login">
-        <Card className="flex flex-col justify-center px-4 pt-1 pb-8 border border-blue-800/90 shadow-sm">
+        <Card className="flex flex-col justify-center border border-blue-800/90 px-4 pb-8 pt-1 shadow-sm">
           <CardHeader>
-            <CardTitle className="xl:text-3xl 2xl:text-4xl text-slate-800">Log in to TODO</CardTitle>
+            <CardTitle className="text-slate-800 xl:text-3xl 2xl:text-4xl">
+              Log in to TODO
+            </CardTitle>
             <CardDescription className="text-lg text-slate-700/90">
               Get back to planning!
             </CardDescription>
@@ -45,9 +43,11 @@ export function AuthnPanel({ className }) {
         </Card>
       </TabsContent>
       <TabsContent value="signup">
-        <Card className="flex flex-col justify-center px-4 pt-1 pb-8 border border-blue-800/90 shadow-sm">
+        <Card className="flex flex-col justify-center border border-blue-800/90 px-4 pb-8 pt-1 shadow-sm">
           <CardHeader>
-            <CardTitle className="xl:text-3xl 2xl:text-4xl text-slate-800">Sign up to TODO</CardTitle>
+            <CardTitle className="text-slate-800 xl:text-3xl 2xl:text-4xl">
+              Sign up to TODO
+            </CardTitle>
             <CardDescription className="text-lg text-slate-700/90">
               Sign up and start planning your life!
             </CardDescription>
@@ -61,5 +61,5 @@ export function AuthnPanel({ className }) {
   );
 }
 AuthnPanel.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
