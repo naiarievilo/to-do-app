@@ -1,11 +1,19 @@
-import { useLocation } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
 import { TodoList } from "@/features/todos/index.js";
-import { loginRequired } from "@/lib/utils.js";
 
 export function Today() {
-  const route = useLocation().pathname;
-  loginRequired(route);
+  const { data } = useLoaderData();
 
-  return <TodoList />;
+  return (
+    <>
+      {data.map((todolist) => 
+        <TodoList
+          key={todolist.listId}
+          date={new Date(todolist.listDate)}
+          todos={todolist.todos}
+        />
+      )}
+    </>
+  );
 }

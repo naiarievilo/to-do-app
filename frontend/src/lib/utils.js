@@ -18,7 +18,7 @@ export function loginRequired(route) {
   }
 
   if (route.includes("home") && !inSession) {
-    return redirect("/login");
+    return redirect("/");
   }
 }
 

@@ -17,7 +17,7 @@ import { Todo } from "./todo.jsx";
 export function TodoList({ date, todos }) {
   return (
     <section
-      className="mx-12 mb-12 mt-4 flex flex-col rounded-3xl px-12 pb-16
+      className="w-full mx-12 mb-12 mt-4 flex flex-col rounded-3xl px-12 pb-16
       pt-4"
     >
       <TodoListHeader date={date} />
@@ -26,10 +26,10 @@ export function TodoList({ date, todos }) {
         {todos.map((todo) => (
           <>
             <Todo
-              key={todo.id}
-              id={todo.id}
-              data={todo.data}
-              isChecked={todo.isChecked}
+              key={todo.todo_id}
+              id={todo.todo_id}
+              data={todo.todo}
+              isChecked={todo.checked}
             />
             <Separator className="my-2" />
           </>
@@ -41,6 +41,7 @@ export function TodoList({ date, todos }) {
 }
 TodoList.propTypes = {
   date: PropTypes.date,
+  list_id: PropTypes.numeric,
   todos: PropTypes.array,
 };
 
@@ -59,16 +60,23 @@ function TodoListHeader({ date }) {
       </h2>
       <DropdownMenu className="rounded-full">
         <DropdownMenuTrigger>
-          <Button className="flex items-center">
+          <Button
+            size="icon"
+            className="flex items-center rounded-full bg-transparent hover:bg-slate-200"
+          >
             <HorDotsIcon className="h-8 w-8 fill-slate-700" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              <Button>
+              <Button
+                size="sm"
+                className="bg-transparent hover:bg-slate-50
+                text-slate-700 p-0 m-0"
+              >
                 <DeleteForeverIcon className="mr-2 h-5 w-5 fill-slate-700" />
-                <span className="font-medium tracking-wide">Delete list</span>
+                <span className="text-md font-medium tracking-wide">Delete list</span>
               </Button>
             </DropdownMenuItem>
           </DropdownMenuGroup>
