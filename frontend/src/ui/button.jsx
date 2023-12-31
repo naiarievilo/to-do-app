@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { Slot } from "@radix-ui/react-slot"
+import { Slot } from "@radix-ui/react-slot";
 import { PropTypes } from "prop-types";
 
 import { cn } from "@/lib/utils.js";
