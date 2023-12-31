@@ -6,8 +6,6 @@ import {
   Error,
   Home,
   HomeIndex,
-  Login,
-  SignUp,
   Root,
   RootIndex,
   Today,
@@ -24,14 +22,6 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { index: true, element: <RootIndex /> },
-      {
-        path: "login/",
-        element: <Login />,
-      },
-      {
-        path: "signup/",
-        element: <SignUp />,
-      },
       {
         path: "home/",
         element: <Home />,
