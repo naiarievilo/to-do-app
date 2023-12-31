@@ -17,7 +17,7 @@ export default defineConfig({
     proxy: {
       "/users": "http://localhost:3000",
       "/todolists": "http://localhost:3000",
-      "/todos": "http://localhost:3000"
-    }
-  }
+      "/todos": "http://localhost:3000",
+    },
+  },
 });
