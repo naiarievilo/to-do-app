@@ -1,4 +1,3 @@
-import { redirect } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -31,9 +30,9 @@ export function LogInForm() {
     try {
       await logInUser(formData);
       localStorage.setItem("session", "true");
-      redirect("/home");
+      return window.location.replace("http:localhost:5173/home");
     } catch (err) {
-      alert("err.message");
+      alert(err.message);
     }
   }
 
