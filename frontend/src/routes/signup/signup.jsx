@@ -1,8 +1,5 @@
 import { AppHeader } from "@/ui/app-header.jsx";
-import {
-  AuthBackground,
-  SignUpForm,
-} from "@/features/authentication/index.js";
+import { AuthBackground, SignUpForm } from "@/features/authentication/index.js";
 
 export function SignUp() {
   return (

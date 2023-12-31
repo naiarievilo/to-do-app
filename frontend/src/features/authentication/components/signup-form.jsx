@@ -21,20 +21,23 @@ export function SignUpForm() {
     defaultValues: {
       email: "",
       password: "",
-      confirm_password: ""
-    }
+      confirm_password: "",
+    },
   });
 
   return (
     <FormContainer>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="my-4 w-10/12 space-y-6"
+        >
           <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel required={true}>Email</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -47,7 +50,7 @@ export function SignUpForm() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel required={true}>Password</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -60,7 +63,7 @@ export function SignUpForm() {
             name="confirm_password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Confirm password</FormLabel>
+                <FormLabel required={true}>Confirm password</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -68,7 +71,11 @@ export function SignUpForm() {
               </FormItem>
             )}
           />
-          <Button type="submit">Sign Up</Button>
+          <Button
+            type="submit"
+          >
+            Sign Up
+          </Button>
         </form>
       </Form>
     </FormContainer>

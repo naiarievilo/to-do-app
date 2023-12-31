@@ -19,7 +19,7 @@ const FormField = ({ ...props }) => {
 };
 FormField.propTypes = {
   name: PropTypes.string,
-  props: PropTypes.obj
+  props: PropTypes.obj,
 };
 
 const useFormField = () => {
@@ -62,13 +62,17 @@ FormItem.propTypes = {
   props: PropTypes.obj,
 };
 
-const FormLabel = forwardRef(({ className, ...props }, ref) => {
+const FormLabel = forwardRef(({ className, required, ...props }, ref) => {
   const { error, formItemId } = useFormField();
 
   return (
     <Label
       ref={ref}
-      className={cn(error && "text-red-500 dark:text-red-900", className)}
+      className={cn(
+        error && "",
+        required && "after:ml-0.5 after:text-red-500 after:content-['*']",
+        className,
+      )}
       htmlFor={formItemId}
       {...props}
     />
@@ -77,6 +81,7 @@ const FormLabel = forwardRef(({ className, ...props }, ref) => {
 FormLabel.displayName = "FormLabel";
 FormLabel.propTypes = {
   className: PropTypes.string,
+  required: PropTypes.bool,
   props: PropTypes.obj,
 };
 
@@ -133,10 +138,7 @@ const FormMessage = forwardRef(({ className, children, ...props }, ref) => {
     <p
       ref={ref}
       id={formMessageId}
-      className={cn(
-        "text-sm font-medium text-red-500 dark:text-red-900",
-        className,
-      )}
+      className={cn("text-sm font-medium text-rose-500", className)}
       {...props}
     >
       {body}
