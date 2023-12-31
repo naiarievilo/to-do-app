@@ -15,8 +15,12 @@ export function LogoutButton() {
     }
   }
   return (
-    <Button size="icon" className="rounded-full" onClick={handleClick}>
-      <LogoutIcon className="h-10 w-10 fill-slate-50" />
+    <Button
+      size="icon"
+      className="hover:bg-blue-500 flex justify-center rounded-full"
+      onClick={handleClick}
+    >
+      <LogoutIcon className="relative left-0.5 h-6 w-6 fill-slate-50" />
     </Button>
   );
 }

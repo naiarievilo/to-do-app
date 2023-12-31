@@ -1,11 +1,11 @@
 import { cva } from "class-variance-authority";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center tracking-wide whitespace-nowrap rounded-md text-md ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-700 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center tracking-wide whitespace-nowrap rounded-md text-md ring-offset-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-700 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-blue-500 text-slate-50 hover:bg-blue-600/90",
+        default: "bg-blue-600 text-slate-50 hover:bg-blue-500",
         destructive: "bg-rose-600 text-slate-50 hover:bg-red-700/90",
         outline:
           "border border-blue-500 bg-white text-blue-500 hover:bg-slate-100 hover:text-blue-600/90 hover:border-blue-600/90",

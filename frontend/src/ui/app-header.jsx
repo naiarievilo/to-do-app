@@ -12,7 +12,11 @@ export function AppHeader({ header, appIcon, appName }) {
     <header
       className={`flex w-full items-center justify-between px-8 py-3 ${header}`}
     >
-      <AppLogo appName={appName} appIcon={appIcon} />
+      <AppLogo
+        appName={appName}
+        link={isLoggedIn() ? "/home" : "/"}
+        appIcon={appIcon}
+      />
       <nav>{isLoggedIn() && LoggedMenu}</nav>
     </header>
   );

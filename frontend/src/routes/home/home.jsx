@@ -7,7 +7,7 @@ export function Home() {
   return (
     <div className="flex h-full flex-col">
       <AppHeader
-        header="bg-blue-500"
+        header="bg-blue-600"
         appIcon="fill-slate-50"
         appName="text-slate-50"
       />
