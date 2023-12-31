@@ -1,6 +1,12 @@
+import { useLocation } from "react-router-dom";
+
 import { AppHeader } from "@/ui/app-header.jsx";
+import { loginRequired } from "@/lib/utils.js";
 
 export function RootIndex() {
+  const route = useLocation().pathname;
+  loginRequired(route);
+
   return (
     <main>
       <section className="mb-16 flex flex-col">

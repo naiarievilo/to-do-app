@@ -1,7 +1,13 @@
+import { useLocation } from "react-router-dom";
+
 import { AppHeader } from "@/ui/app-header.jsx";
 import { AuthBackground, SignUpForm } from "@/features/authentication/index.js";
+import { loginRequired } from "@/lib/utils.js";
 
 export function SignUp() {
+  const route = useLocation().pathname;
+  loginRequired(route);
+
   return (
     <>
       <AuthBackground />

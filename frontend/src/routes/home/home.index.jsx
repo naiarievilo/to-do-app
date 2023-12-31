@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { PropTypes } from "prop-types";
 
 import {
@@ -7,8 +7,12 @@ import {
   ViewWeekIcon,
   ViewMonthIcon,
 } from "@/assets/index.js";
+import { loginRequired } from "@/lib/utils.js";
 
 export function HomeIndex() {
+  const route = useLocation().pathname;
+  loginRequired(route);
+
   return (
     <section className="flex h-full w-full flex-col items-center justify-center">
       <header className="flex items-center justify-center space-x-8">

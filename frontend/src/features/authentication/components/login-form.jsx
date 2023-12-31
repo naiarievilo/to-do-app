@@ -15,6 +15,7 @@ import { FormContainer } from "../layout/form-container.jsx";
 
 import { loginSchema } from "../schemas/authn.js";
 import { logInUser } from "../api/users.js";
+import { redirect } from "@/lib/utils.js";
 
 export function LogInForm() {
   const form = useForm({
@@ -30,7 +31,7 @@ export function LogInForm() {
     try {
       await logInUser(formData);
       localStorage.setItem("session", "true");
-      return window.location.replace("http:localhost:5173/home");
+      return redirect("/home");
     } catch (err) {
       alert(err.message);
     }
