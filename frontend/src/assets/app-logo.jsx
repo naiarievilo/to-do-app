@@ -22,5 +22,5 @@ font-semibold tracking-tight 3xl:text-5xl 4xl:text-7xl ${appName}`}
 AppLogo.propTypes = {
   appName: PropTypes.string,
   appIcon: PropTypes.string,
-  link: PropTypes.string
+  link: PropTypes.string,
 };

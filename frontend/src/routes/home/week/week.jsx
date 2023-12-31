@@ -1,11 +1,13 @@
-import { useLocation } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
-import { TodoList } from "@/features/todos/index.js";
-import { loginRequired } from "@/lib/utils.js";
+import { TodoPanel, TodoContainer } from "@/features/todos/index.js";
 
 export function Week() {
-  const route = useLocation().pathname;
-  loginRequired(route);
+  const { data } = useLoaderData();
 
-  return <TodoList />;
+  return (
+    <TodoContainer>
+      <TodoPanel data={data} />;
+    </TodoContainer>
+  );
 }

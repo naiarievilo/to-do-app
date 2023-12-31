@@ -9,8 +9,6 @@ export async function todayLoader() {
   try {
     const response = await getTodaysTodoList();
     const todaysList = response.data;
-    console.log( { todaysList });
-    console.log(todaysList);
     return todaysList;
   } catch (err) {
     alert(err.message);

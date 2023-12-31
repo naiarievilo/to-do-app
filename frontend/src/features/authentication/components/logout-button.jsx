@@ -17,7 +17,7 @@ export function LogoutButton() {
   return (
     <Button
       size="icon"
-      className="hover:bg-blue-500 flex justify-center rounded-full"
+      className="flex justify-center rounded-full hover:bg-blue-500"
       onClick={handleClick}
     >
       <LogoutIcon className="relative left-0.5 h-6 w-6 fill-slate-50" />

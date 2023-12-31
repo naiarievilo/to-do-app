@@ -17,7 +17,7 @@ export function RootIndex() {
             <h2
               className="md:mt-34 mx-4 mb-16 mt-20 text-center font-sans
               text-6xl font-semibold leading-[1.10] tracking-tighter xs:mt-36
-              xs:text-7xl sm:mt-44 sm:text-8xl md:text-8xl lg:mt-28 xl:mt-20
+              xs:text-7xl sm:mt-44 sm:text-8xl md:text-8xl lg:mt-28 xl:mt-12
               xl:text-left xl:text-7xl 3xl:text-9xl 4xl:mt-60 4xl:text-[12rem]"
             >
               Planning your week has never been&nbsp;

@@ -12,7 +12,16 @@ import {
   TooltipContent,
 } from "@/ui/tooltip.jsx";
 
-export function Todo({ className, id, data, isChecked }) {
+export function Todo({
+  id,
+  className,
+  listId,
+  todoId,
+  data,
+  isChecked,
+  handleUpdateTodo,
+  handleDeleteTodo,
+}) {
   const [todo, setTodo] = useState(data);
   const [checked, setChecked] = useState(isChecked);
 
@@ -26,14 +35,21 @@ export function Todo({ className, id, data, isChecked }) {
 
   useEffect(() => {
     let inputRef = document.getElementById(id);
-    inputRef.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        inputRef.blur();
+    let ignore = false;
+
+    inputRef.addEventListener("focusout", (e) => {
+      e.stopPropagation();
+
+      if (!ignore) {
+        handleUpdateTodo(listId, todoId, todo, checked);
       }
     });
 
-    return () => inputRef.removeEventListener;
-  }, [id]);
+    return () => {
+      inputRef.removeEventListener;
+      ignore = true;
+    };
+  }, [id, listId, todoId, todo, checked, handleUpdateTodo]);
 
   return (
     <li
@@ -55,7 +71,10 @@ export function Todo({ className, id, data, isChecked }) {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button className="flex items-center rounded-full">
+                <Button
+                  className="flex items-center rounded-full"
+                  onClick={() => handleDeleteTodo(listId, todoId)}
+                >
                   <DeleteIcon
                     className="h-6 w-6 fill-slate-700 transition-all
                     duration-200"
@@ -72,7 +91,11 @@ export function Todo({ className, id, data, isChecked }) {
 }
 Todo.propTypes = {
   className: PropTypes.string,
-  data: PropTypes.string,
   id: PropTypes.number,
+  listId: PropTypes.listId,
+  todoId: PropTypes.number,
+  data: PropTypes.string,
   isChecked: PropTypes.bool,
+  handleUpdateTodo: PropTypes.func,
+  handleDeleteTodo: PropTypes.func,
 };

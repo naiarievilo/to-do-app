@@ -4,7 +4,7 @@ import { PropTypes } from "prop-types";
 import { Checkbox } from "@/ui/checkbox.jsx";
 import { Input } from "@/ui/input.jsx";
 
-export function AddTodo({ id }) {
+export function AddTodo({ id, listId, handleCreateTodo }) {
   const [nextTodo, setNextTodo] = useState(null);
   const [checked, setChecked] = useState(false);
 
@@ -21,16 +21,27 @@ export function AddTodo({ id }) {
 
   useEffect(() => {
     let nextTodoRef = document.getElementById(id);
-    nextTodoRef.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        setNextTodo("");
-        nextTodoRef.blur();
-      } else if (e.key === "Enter") {
-        nextTodoRef.blur();
-      }
-    });
+    let ignore = false;
 
-    return () => nextTodoRef.removeEventListener;
+    nextTodoRef.addEventListener(
+      "keydown",
+      (e) => {
+        if (e.key === "Escape") {
+          setNextTodo("");
+          nextTodoRef.blur();
+        }
+
+        if (e.key === "Enter" && !ignore) {
+          handleCreateTodo(listId, nextTodo, checked);
+        }
+      },
+      [nextTodo, checked, listId, id, handleCreateTodo],
+    );
+
+    return () => {
+      nextTodoRef.removeEventListener;
+      ignore = true;
+    };
   });
 
   return (
@@ -57,7 +68,9 @@ export function AddTodo({ id }) {
   );
 }
 AddTodo.propTypes = {
-  id: PropTypes.date,
+  id: PropTypes.number,
+  listId: PropTypes.number,
+  handleCreateTodo: PropTypes.func,
 };
 
 function Legend({ isEmpty }) {

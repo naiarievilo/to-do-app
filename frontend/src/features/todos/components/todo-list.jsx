@@ -5,35 +5,46 @@ import { Separator } from "@/ui/separator.jsx";
 import { AddTodo } from "./add-todo.jsx";
 import { Todo } from "./todo.jsx";
 
-export function TodoList({ date, todos }) {
+export function TodoList({
+  listId,
+  listDate,
+  todos,
+  handleCreateTodo,
+  handleUpdateTodo,
+  handleDeleteTodo,
+}) {
   return (
-    <section
-      className="w-full mx-12 mb-12 mt-4 flex flex-col rounded-3xl px-12 pb-16
-      pt-4"
-    >
-      <TodoListHeader date={date} />
+    <section className="mb-12 mt-4 flex w-full flex-col rounded-3xl px-12 pb-16 pt-4">
+      <TodoListHeader date={listDate} />
       <Separator className="bg-slate-400" />
       <ul className="my-4 flex flex-col rounded-xl">
         {todos.map((todo) => (
           <>
             <Todo
-              key={todo.todo_id}
-              id={todo.todo_id}
+              key={todo.todoId}
+              id={todo.todoId}
+              listId={listId}
+              todoId={todo.todoId}
               data={todo.todo}
               isChecked={todo.checked}
+              handleUpdateTodo={handleUpdateTodo}
+              handleDeleteTodo={handleDeleteTodo}
             />
             <Separator className="my-2" />
           </>
         ))}
-        <AddTodo id={date} />
+        <AddTodo id={listId} listId={listId} handleCreateTodo={handleCreateTodo} />
       </ul>
     </section>
   );
 }
 TodoList.propTypes = {
-  date: PropTypes.date,
-  list_id: PropTypes.numeric,
+  listDate: PropTypes.date,
+  listId: PropTypes.number,
   todos: PropTypes.array,
+  handleCreateTodo: PropTypes.func,
+  handleUpdateTodo: PropTypes.func,
+  handleDeleteTodo: PropTypes.func,
 };
 
 function TodoListHeader({ date }) {
