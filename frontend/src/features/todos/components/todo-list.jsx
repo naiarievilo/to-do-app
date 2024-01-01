@@ -9,13 +9,10 @@ export function TodoList({
   listId,
   listDate,
   todos,
-  handleCreateTodo,
-  handleUpdateTodo,
-  handleDeleteTodo,
 }) {
   return (
     <section className="mb-12 mt-4 flex w-full flex-col rounded-3xl px-12 pb-16 pt-4">
-      <TodoListHeader date={listDate} />
+      <TodoListHeader listDate={listDate} />
       <Separator className="bg-slate-400" />
       <ul className="my-4 flex flex-col rounded-xl">
         {todos.map((todo) => (
@@ -27,13 +24,11 @@ export function TodoList({
               todoId={todo.todoId}
               data={todo.todo}
               isChecked={todo.checked}
-              handleUpdateTodo={handleUpdateTodo}
-              handleDeleteTodo={handleDeleteTodo}
             />
             <Separator className="my-2" />
           </>
         ))}
-        <AddTodo id={listId} listId={listId} handleCreateTodo={handleCreateTodo} />
+        <AddTodo listId={listId} />
       </ul>
     </section>
   );
@@ -42,13 +37,10 @@ TodoList.propTypes = {
   listDate: PropTypes.date,
   listId: PropTypes.number,
   todos: PropTypes.array,
-  handleCreateTodo: PropTypes.func,
-  handleUpdateTodo: PropTypes.func,
-  handleDeleteTodo: PropTypes.func,
 };
 
-function TodoListHeader({ date }) {
-  const dateFormatted = date.toLocaleDateString("en-US", {
+function TodoListHeader({ listDate }) {
+  const dateFormatted = listDate.toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -64,5 +56,5 @@ function TodoListHeader({ date }) {
   );
 }
 TodoListHeader.propTypes = {
-  date: PropTypes.date,
+  listDate: PropTypes.date
 };

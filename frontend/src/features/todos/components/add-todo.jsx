@@ -4,7 +4,7 @@ import { PropTypes } from "prop-types";
 import { Checkbox } from "@/ui/checkbox.jsx";
 import { Input } from "@/ui/input.jsx";
 
-export function AddTodo({ id, listId, handleCreateTodo }) {
+export function AddTodo({ listId }) {
   const [nextTodo, setNextTodo] = useState(null);
   const [checked, setChecked] = useState(false);
 
@@ -20,7 +20,7 @@ export function AddTodo({ id, listId, handleCreateTodo }) {
   }
 
   useEffect(() => {
-    let nextTodoRef = document.getElementById(id);
+    const nextTodoRef = document.getElementById(listId);
     let ignore = false;
 
     nextTodoRef.addEventListener(
@@ -32,17 +32,16 @@ export function AddTodo({ id, listId, handleCreateTodo }) {
         }
 
         if (e.key === "Enter" && !ignore) {
-          handleCreateTodo(listId, nextTodo, checked);
+          nextTodoRef.blur();
         }
-      },
-      [nextTodo, checked, listId, id, handleCreateTodo],
+      }
     );
 
     return () => {
       nextTodoRef.removeEventListener;
       ignore = true;
     };
-  });
+  }, [listId, nextTodo, checked]);
 
   return (
     <li
@@ -55,7 +54,7 @@ export function AddTodo({ id, listId, handleCreateTodo }) {
         onClick={handleCheckChange}
       />
       <Input
-        id={id}
+        id={listId}
         className="text-md border-none bg-transparent p-4 outline-transparent
         ring-offset-transparent placeholder:italic placeholder:tracking-wide
         placeholder:text-slate-500 focus-visible:ring-transparent"

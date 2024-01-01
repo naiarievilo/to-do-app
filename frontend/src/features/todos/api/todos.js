@@ -4,7 +4,7 @@ export async function createTodo(todoInfo) {
   return await axios.post("/todos/create", todoInfo);
 }
 
-export async function UpdateTodo(todoInfo) {
+export async function updateTodo(todoInfo) {
   return await axios.put("/todos/update", todoInfo);
 }
 

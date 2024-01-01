@@ -5,10 +5,12 @@ export function createTodo() {
   return async (req, res) => {
     const { list_id, todo, checked } = req.body;
 
+    let todoInfo;
     try {
-      await db.none(
+      todoInfo = await db.one(
         `INSERT INTO todos (todo, checked, list_id)
-         VALUES ($1, $2, $3)`,
+         VALUES ($1, $2, $3)
+         RETURNING id, todo, checked`,
         [todo, checked, list_id],
       );
     } catch (err) {
@@ -16,7 +18,7 @@ export function createTodo() {
       return res.status(500).json(errorObj(err));
     }
 
-    return res.status(200).json(successObj());
+    return res.status(200).json(successObj(todoInfo));
   };
 }
 

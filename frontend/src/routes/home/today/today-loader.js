@@ -8,6 +8,7 @@ export async function todayLoader() {
 
   try {
     const response = await getTodaysTodoList();
+    console.log(response);
     const todaysList = response.data;
     return todaysList;
   } catch (err) {

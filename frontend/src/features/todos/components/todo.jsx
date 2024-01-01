@@ -15,12 +15,8 @@ import {
 export function Todo({
   id,
   className,
-  listId,
-  todoId,
   data,
   isChecked,
-  handleUpdateTodo,
-  handleDeleteTodo,
 }) {
   const [todo, setTodo] = useState(data);
   const [checked, setChecked] = useState(isChecked);
@@ -35,21 +31,15 @@ export function Todo({
 
   useEffect(() => {
     let inputRef = document.getElementById(id);
-    let ignore = false;
 
     inputRef.addEventListener("focusout", (e) => {
-      e.stopPropagation();
-
-      if (!ignore) {
-        handleUpdateTodo(listId, todoId, todo, checked);
-      }
+        e.stopPropagation();
     });
 
     return () => {
       inputRef.removeEventListener;
-      ignore = true;
     };
-  }, [id, listId, todoId, todo, checked, handleUpdateTodo]);
+  }, [id]);
 
   return (
     <li
@@ -73,7 +63,6 @@ export function Todo({
               <TooltipTrigger asChild>
                 <Button
                   className="flex items-center rounded-full"
-                  onClick={() => handleDeleteTodo(listId, todoId)}
                 >
                   <DeleteIcon
                     className="h-6 w-6 fill-slate-700 transition-all
@@ -92,10 +81,6 @@ export function Todo({
 Todo.propTypes = {
   className: PropTypes.string,
   id: PropTypes.number,
-  listId: PropTypes.listId,
-  todoId: PropTypes.number,
   data: PropTypes.string,
   isChecked: PropTypes.bool,
-  handleUpdateTodo: PropTypes.func,
-  handleDeleteTodo: PropTypes.func,
 };
