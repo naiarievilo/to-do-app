@@ -8,10 +8,10 @@ export function createTodo() {
     let todoInfo;
     try {
       todoInfo = await db.one(
-        `INSERT INTO todos (todo, checked, list_id)
+        `INSERT INTO todos (list_id, todo, checked)
          VALUES ($1, $2, $3)
          RETURNING id, todo, checked`,
-        [todo, checked, list_id],
+        [list_id, todo, checked],
       );
     } catch (err) {
       console.error(err);
