@@ -13,7 +13,7 @@ export function Error() {
       </p>
       <p>
         <strong>
-          {error.status} {error.statusText}
+          {error.name + ": " + error.message}
         </strong>
       </p>
     </main>
