@@ -62,7 +62,9 @@ export function Todo({
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
-                  className="flex items-center rounded-full"
+                  size="icon"
+                  className="flex shadow-none bg-transparent hover:bg-slate-200
+                  active:bg-slate-300/90 items-center rounded-full"
                 >
                   <DeleteIcon
                     className="h-6 w-6 fill-slate-700 transition-all

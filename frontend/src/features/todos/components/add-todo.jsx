@@ -4,7 +4,7 @@ import { PropTypes } from "prop-types";
 import { Checkbox } from "@/ui/checkbox.jsx";
 import { Input } from "@/ui/input.jsx";
 
-export function AddTodo({ listId }) {
+export function AddTodo({ listId, handleCreateTodo }) {
   const [nextTodo, setNextTodo] = useState(null);
   const [checked, setChecked] = useState(false);
 
@@ -32,7 +32,9 @@ export function AddTodo({ listId }) {
         }
 
         if (e.key === "Enter" && !ignore) {
-          nextTodoRef.blur();
+          handleCreateTodo(listId, nextTodo, checked);
+          setNextTodo("");
+          setChecked(false);
         }
       }
     );
@@ -41,7 +43,7 @@ export function AddTodo({ listId }) {
       nextTodoRef.removeEventListener;
       ignore = true;
     };
-  }, [listId, nextTodo, checked]);
+  }, [handleCreateTodo, listId, nextTodo, checked]);
 
   return (
     <li

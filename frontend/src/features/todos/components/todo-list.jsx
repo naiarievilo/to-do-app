@@ -8,14 +8,15 @@ import { Todo } from "./todo.jsx";
 export function TodoList({
   listId,
   listDate,
-  todos,
+  listTodos
 }) {
+
   return (
     <section className="mb-12 mt-4 flex w-full flex-col rounded-3xl px-12 pb-16 pt-4">
       <TodoListHeader listDate={listDate} />
       <Separator className="bg-slate-400" />
       <ul className="my-4 flex flex-col rounded-xl">
-        {todos.map((todo) => (
+        {listTodos.map((todo) => (
           <>
             <Todo
               key={todo.todoId}
@@ -34,13 +35,13 @@ export function TodoList({
   );
 }
 TodoList.propTypes = {
-  listDate: PropTypes.date,
+  listDate: PropTypes.string,
   listId: PropTypes.number,
-  todos: PropTypes.array,
+  listTodos: PropTypes.array,
 };
 
 function TodoListHeader({ listDate }) {
-  const dateFormatted = listDate.toLocaleDateString("en-US", {
+  const date = new Date(listDate).toLocaleString("en-US", {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -50,11 +51,11 @@ function TodoListHeader({ listDate }) {
   return (
     <header className="my-4 flex items-center justify-between rounded-2xl">
       <h2 className="text-3xl font-bold tracking-tight text-slate-700">
-        {dateFormatted}
+        {date}
       </h2>
     </header>
   );
 }
 TodoListHeader.propTypes = {
-  listDate: PropTypes.date
+  listDate: PropTypes.string
 };
