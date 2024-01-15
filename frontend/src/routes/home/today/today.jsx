@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import { loginRequired } from "@/lib/utils.js";
-import { TodoList, TodoContainer } from "@/features/todos/index.js";
+import { TodoList, TodoContainer, TodoListSkeleton } from "@/features/todos/index.js";
 
 export function Today() {
-  const [results, setResults] = useState(null);
+  const [todayList, setTodayList] = useState(null);
   const [loading, setLoading ] = useState(true);
 
   const route = useLocation().pathname;
@@ -14,12 +14,12 @@ export function Today() {
 
   useEffect(() => {
     let ignore = false;
-    setResults(null);
+    setTodayList(null);
 
     axios.get("/todolists/today")
       .then((result) => {
         if (!ignore) {
-          setResults(result.data.data);
+          setTodayList(result.data.data);
           setLoading(false);
         }
       })
@@ -28,14 +28,18 @@ export function Today() {
       })
 
     return () => ignore = true;
-  }, [setResults])
+  }, [setTodayList])
 
   if (loading) {
-    return <p>loading...</p>
+    return (
+      <TodoContainer>
+        <TodoListSkeleton />
+      </TodoContainer>
+    );
   } else {
     return (
       <TodoContainer>
-        {results.map(result => {
+        {todayList.map(result => {
           return (
             <TodoList
               key={result.listId}
