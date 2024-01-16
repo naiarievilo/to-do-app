@@ -1,5 +1,5 @@
 import { PropTypes } from "prop-types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { Checkbox } from "@/ui/checkbox.jsx";
 import { Button } from "@/ui/button.jsx";
@@ -28,18 +28,6 @@ export function Todo({
   function handleCheckChange() {
     setChecked(!checked);
   }
-
-  useEffect(() => {
-    let inputRef = document.getElementById(id);
-
-    inputRef.addEventListener("focusout", (e) => {
-        e.stopPropagation();
-    });
-
-    return () => {
-      inputRef.removeEventListener;
-    };
-  }, [id]);
 
   return (
     <li

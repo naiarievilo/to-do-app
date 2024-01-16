@@ -2,7 +2,7 @@ import { useRouteError } from "react-router-dom";
 
 export function Error() {
   const error = useRouteError();
-  console.error(error);
+  console.log(error);
 
   return (
     <main className="container mx-auto">

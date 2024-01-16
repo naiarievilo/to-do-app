@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { PropTypes } from "prop-types";
 
 import { Checkbox } from "@/ui/checkbox.jsx";
 import { Input } from "@/ui/input.jsx";
 
-export function AddTodo({ listId, handleCreateTodo }) {
+export function AddTodo({ listId, onCreateTodo }) {
   const [nextTodo, setNextTodo] = useState(null);
   const [checked, setChecked] = useState(false);
+  const nextTodoRef = useRef(null);
 
   function handleInputChange(event) {
     if (event.currentTarget.value.length === 0) {
@@ -19,31 +20,18 @@ export function AddTodo({ listId, handleCreateTodo }) {
     setChecked(!checked);
   }
 
-  useEffect(() => {
-    const nextTodoRef = document.getElementById(listId);
-    let ignore = false;
+  function handleKeyDown(e) {
+    if (e.key === "Escape") {
+      setNextTodo("");
+      nextTodoRef.current.blur();
+    }
 
-    nextTodoRef.addEventListener(
-      "keydown",
-      (e) => {
-        if (e.key === "Escape") {
-          setNextTodo("");
-          nextTodoRef.blur();
-        }
-
-        if (e.key === "Enter" && !ignore) {
-          handleCreateTodo(listId, nextTodo, checked);
-          setNextTodo("");
-          setChecked(false);
-        }
-      }
-    );
-
-    return () => {
-      nextTodoRef.removeEventListener;
-      ignore = true;
-    };
-  }, [handleCreateTodo, listId, nextTodo, checked]);
+    if (e.key === "Enter") {
+      onCreateTodo(listId, nextTodo, checked);
+      setNextTodo("");
+      nextTodoRef.current.blur();
+    }
+  }
 
   return (
     <li
@@ -56,22 +44,22 @@ export function AddTodo({ listId, handleCreateTodo }) {
         onClick={handleCheckChange}
       />
       <Input
-        id={listId}
+        ref={nextTodoRef}
         className="text-md border-none bg-transparent p-4 outline-transparent
         ring-offset-transparent placeholder:italic placeholder:tracking-wide
         placeholder:text-slate-500 focus-visible:ring-transparent"
         placeholder="My next to-do is..."
         value={nextTodo}
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
       />
       <Legend isEmpty={nextTodo ? false : true} />
     </li>
   );
 }
 AddTodo.propTypes = {
-  id: PropTypes.number,
   listId: PropTypes.number,
-  handleCreateTodo: PropTypes.func,
+  onCreateTodo: PropTypes.func,
 };
 
 function Legend({ isEmpty }) {

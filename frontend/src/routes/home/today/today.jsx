@@ -39,16 +39,14 @@ export function Today() {
   } else {
     return (
       <TodoContainer>
-        {todayList.map(result => {
-          return (
-            <TodoList
-              key={result.listId}
-              listId={result.listId}
-              listDate={result.listDate}
-              listTodos={result.todos}
-            />
-          );
-        })}
+        {todayList.map(result => ( 
+          <TodoList
+            key={result.listId}
+            listId={result.listId}
+            listDate={result.listDate}
+            listTodos={result.todos}
+          />
+        ))}
       </TodoContainer>
     );
   }

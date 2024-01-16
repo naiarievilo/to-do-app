@@ -1,4 +1,6 @@
+import axios from "axios";
 import { PropTypes } from "prop-types";
+import { useState } from "react";
 
 import { Separator } from "@/ui/separator.jsx";
 
@@ -10,13 +12,27 @@ export function TodoList({
   listDate,
   listTodos
 }) {
+  const [todos, setTodos] = useState(listTodos);
+
+  function handleCreateTodo(listId, todo, checked) {
+    const newTodo = { list_id: listId, todo: todo, checked: checked };
+
+    axios.post("/todos/", newTodo)
+      .then((result) => {
+        setTodos([...todos, result.data.data]);
+      })
+      .catch((err) => {
+        alert(err);
+        console.log(err);
+      });
+  }
 
   return (
     <section className="mb-12 mt-4 flex w-full flex-col rounded-3xl px-12 pb-16 pt-4">
       <TodoListHeader listDate={listDate} />
       <Separator className="bg-slate-400" />
       <ul className="my-4 flex flex-col rounded-xl">
-        {listTodos.map((todo) => (
+        {todos.map((todo) => (
           <>
             <Todo
               key={todo.todoId}
@@ -29,7 +45,7 @@ export function TodoList({
             <Separator className="my-2" />
           </>
         ))}
-        <AddTodo listId={listId} />
+        <AddTodo listId={listId} listDate={listDate} onCreateTodo={handleCreateTodo} />
       </ul>
     </section>
   );
