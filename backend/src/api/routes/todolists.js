@@ -17,8 +17,8 @@ todoLists.get("/week", authenticateUser(), getWeeklyTodoLists());
 
 todoLists.get("/upcoming", authenticateUser(), getUpcomingTodoLists());
 
-todoLists.post("/create", authenticateUser(), createTodoList());
+todoLists.post("/", authenticateUser(), createTodoList());
 
-todoLists.delete("/delete", authenticateUser(), deleteTodoList());
+todoLists.delete("/", authenticateUser(), deleteTodoList());
 
 export default todoLists;
