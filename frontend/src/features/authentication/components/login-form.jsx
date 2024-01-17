@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 import { Button } from "@/ui/button.jsx";
 import {
@@ -11,6 +12,7 @@ import {
   FormMessage,
 } from "@/ui/form.jsx";
 import { Input } from "@/ui/input.jsx";
+import { ErrorMessage } from "./error-message.jsx";
 
 import { loginSchema } from "../schemas/authn.js";
 import { logInUser } from "../api/users.js";
@@ -25,6 +27,7 @@ export function LogInForm() {
       confirm_password: "",
     },
   });
+  const [error, setError] = useState(null);
 
   async function onSubmit(formData) {
     try {
@@ -32,50 +35,53 @@ export function LogInForm() {
       localStorage.setItem("session", "true");
       return redirect("/home");
     } catch (err) {
-      alert(err.message);
+      setError(err.response.data.error.message);
     }
   }
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col justify-center space-y-4"
-      >
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel required={true}>Email</FormLabel>
-              <FormControl>
-                <Input type="email" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel required={true}>Password</FormLabel>
-              <FormControl>
-                <Input type="password" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button
-          type="submit"
-          size="lg"
-          className="bg-blue-600 hover:bg-blue-700"
+    <>
+      {error && <ErrorMessage message={error} />}
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex flex-col justify-center space-y-4"
         >
-          Log In
-        </Button>
-      </form>
-    </Form>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel required={true}>Email</FormLabel>
+                <FormControl>
+                  <Input type="email" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel required={true}>Password</FormLabel>
+                <FormControl>
+                  <Input type="password" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button
+            type="submit"
+            size="lg"
+            className="bg-blue-600 hover:bg-blue-700"
+          >
+            Log In
+          </Button>
+        </form>
+      </Form>
+    </>
   );
 }

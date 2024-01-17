@@ -1,9 +1,7 @@
 import Joi from "joi";
 
 const FIELDS = {
-  email: Joi.string()
-    .email()
-    .required(),
+  email: Joi.string().email().required(),
   password: Joi.string().required(),
 };
 

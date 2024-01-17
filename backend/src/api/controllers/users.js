@@ -21,7 +21,7 @@ export function signUpUser() {
       if (hasUser) {
         return res.status(400).json(
           errorObj({
-            message: "Email is already taken.",
+            message: "Email is already registered.",
           }),
         );
       }
@@ -78,7 +78,11 @@ export function loginUser() {
     try {
       const match = await compare(password, userInfo.hash);
       if (!match) {
-        return res.sendStatus(400);
+        return res.status(400).json(
+          errorObj({
+            message: "Incorrect email or/and password",
+          }),
+        );
       }
     } catch (err) {
       console.error(err);

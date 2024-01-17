@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils.js";
 function Skeleton({ className, ...props }) {
   return (
     <div
-      className={cn("bg-slate-200/75 animate-pulse rounded-md", className)}
+      className={cn("animate-pulse rounded-md bg-slate-200/75", className)}
       {...props}
     />
   );

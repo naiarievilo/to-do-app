@@ -50,7 +50,7 @@ export function deleteTodo() {
       await db.none(
         `DELETE FROM todos
                WHERE id = $1`,
-        [todo_id]
+        [todo_id],
       );
     } catch (err) {
       console.error(err);

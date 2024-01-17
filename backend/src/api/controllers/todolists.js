@@ -136,12 +136,14 @@ export function createTodoList() {
            FROM todolists
           WHERE user_id = $1
             AND date = $2`,
-        [accessToken.id, list_date]
+        [accessToken.id, list_date],
       );
       if (hasTodoList) {
-        return res.status(409).json(errorObj({
-          message: "Todo list already exists."
-        }));
+        return res.status(409).json(
+          errorObj({
+            message: "Todo list already exists.",
+          }),
+        );
       }
     } catch (err) {
       console.error(err);
