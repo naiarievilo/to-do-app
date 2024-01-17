@@ -29,7 +29,7 @@ export function AddTodo({ listId, onCreateTodo }) {
     if (e.key === "Enter") {
       onCreateTodo(listId, nextTodo, checked);
       setNextTodo("");
-      nextTodoRef.current.blur();
+      setChecked(false);
     }
   }
 
@@ -45,9 +45,10 @@ export function AddTodo({ listId, onCreateTodo }) {
       />
       <Input
         ref={nextTodoRef}
-        className="text-md border-none bg-transparent p-4 outline-transparent
+        className={`text-md border-none bg-transparent p-4 outline-transparent
         ring-offset-transparent placeholder:italic placeholder:tracking-wide
-        placeholder:text-slate-500 focus-visible:ring-transparent"
+        placeholder:text-slate-500 focus-visible:ring-transparent
+        ${checked ? "text-slate-400 line-through" : ""}`}
         placeholder="My next to-do is..."
         value={nextTodo}
         onChange={handleInputChange}

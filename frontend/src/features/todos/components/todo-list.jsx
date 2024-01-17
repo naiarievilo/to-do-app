@@ -7,24 +7,37 @@ import { Separator } from "@/ui/separator.jsx";
 import { AddTodo } from "./add-todo.jsx";
 import { Todo } from "./todo.jsx";
 
-export function TodoList({
-  listId,
-  listDate,
-  listTodos
-}) {
+export function TodoList({ listId, listDate, listTodos }) {
   const [todos, setTodos] = useState(listTodos);
 
-  function handleCreateTodo(listId, todo, checked) {
+  async function handleCreateTodo(listId, todo, checked) {
     const newTodo = { list_id: listId, todo: todo, checked: checked };
 
-    axios.post("/todos/", newTodo)
-      .then((result) => {
-        setTodos([...todos, result.data.data]);
-      })
-      .catch((err) => {
-        alert(err);
-        console.log(err);
-      });
+    try {
+      const result = await axios.post("/todos/", newTodo);
+      setTodos([
+        ...todos,
+        {
+          todoId: result.data.data.id,
+          todo: result.data.data.todo,
+          checked: result.data.data.checked,
+        },
+      ]);
+    } catch (err) {
+      alert(err);
+      console.log(err);
+    }
+  }
+
+  function handleDeleteTodo(todoId) {
+    try {
+      axios.delete("/todos/", { data: { todo_id: todoId } });
+      const newTodos = todos.filter((todo) => todo.todoId !== todoId);
+      setTodos([...newTodos]);
+    } catch (err) {
+      alert(err);
+      console.log(err);
+    }
   }
 
   return (
@@ -36,16 +49,20 @@ export function TodoList({
           <>
             <Todo
               key={todo.todoId}
-              id={todo.todoId}
               listId={listId}
               todoId={todo.todoId}
               data={todo.todo}
               isChecked={todo.checked}
+              onDeleteTodo={handleDeleteTodo}
             />
             <Separator className="my-2" />
           </>
         ))}
-        <AddTodo listId={listId} listDate={listDate} onCreateTodo={handleCreateTodo} />
+        <AddTodo
+          listId={listId}
+          listDate={listDate}
+          onCreateTodo={handleCreateTodo}
+        />
       </ul>
     </section>
   );
@@ -73,5 +90,5 @@ function TodoListHeader({ listDate }) {
   );
 }
 TodoListHeader.propTypes = {
-  listDate: PropTypes.string
+  listDate: PropTypes.string,
 };

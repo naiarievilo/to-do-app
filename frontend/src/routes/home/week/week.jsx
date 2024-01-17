@@ -2,7 +2,11 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-import { TodoList, TodoContainer, TodoListSkeleton } from "@/features/todos/index.js";
+import {
+  TodoList,
+  TodoContainer,
+  TodoListSkeleton,
+} from "@/features/todos/index.js";
 import { loginRequired } from "@/lib/utils.js";
 
 export function Week() {
@@ -16,7 +20,8 @@ export function Week() {
     let ignore = false;
     setWeeklyLists(null);
 
-    axios.get("/todolists/week")
+    axios
+      .get("/todolists/week")
       .then((result) => {
         if (!ignore) {
           setWeeklyLists(result.data.data);
@@ -25,10 +30,10 @@ export function Week() {
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
 
-    return () => ignore = true;
-  }, [setWeeklyLists])
+    return () => (ignore = true);
+  }, [setWeeklyLists]);
 
   if (loading) {
     return (
@@ -46,14 +51,14 @@ export function Week() {
     return (
       <TodoContainer>
         <ul className="flex h-full w-full grow flex-col">
-          {weeklyLists.map((weeklyList) => 
+          {weeklyLists.map((weeklyList) => (
             <TodoList
               key={weeklyList.listId}
               listId={weeklyList.listId}
               listDate={new Date(weeklyList.listDate)}
               listTodos={weeklyList.todos}
             />
-          )}
+          ))}
         </ul>
       </TodoContainer>
     );

@@ -3,11 +3,16 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import { loginRequired } from "@/lib/utils.js";
-import { TodoList, TodoContainer, TodoListSkeleton } from "@/features/todos/index.js";
+import {
+  TodoList,
+  TodoContainer,
+  TodoListSkeleton,
+} from "@/features/todos/index.js";
 
 export function Today() {
   const [todayList, setTodayList] = useState(null);
-  const [loading, setLoading ] = useState(true);
+  const [loading, setLoading] = useState(true);
+  console.log(todayList);
 
   const route = useLocation().pathname;
   loginRequired(route);
@@ -16,7 +21,8 @@ export function Today() {
     let ignore = false;
     setTodayList(null);
 
-    axios.get("/todolists/today")
+    axios
+      .get("/todolists/today")
       .then((result) => {
         if (!ignore) {
           setTodayList(result.data.data);
@@ -25,10 +31,10 @@ export function Today() {
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
 
-    return () => ignore = true;
-  }, [setTodayList])
+    return () => (ignore = true);
+  }, [setTodayList]);
 
   if (loading) {
     return (
@@ -39,7 +45,7 @@ export function Today() {
   } else {
     return (
       <TodoContainer>
-        {todayList.map(result => ( 
+        {todayList.map((result) => (
           <TodoList
             key={result.listId}
             listId={result.listId}

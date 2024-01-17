@@ -12,12 +12,7 @@ import {
   TooltipContent,
 } from "@/ui/tooltip.jsx";
 
-export function Todo({
-  id,
-  className,
-  data,
-  isChecked,
-}) {
+export function Todo({ todoId, data, isChecked, onDeleteTodo }) {
   const [todo, setTodo] = useState(data);
   const [checked, setChecked] = useState(isChecked);
 
@@ -31,12 +26,12 @@ export function Todo({
 
   return (
     <li
-      className={`translate-all flex h-12 items-center space-x-1 rounded-md
-      p-4 duration-200 hover:bg-slate-100/90 ${className}`}
+      className="translate-all flex h-12 items-center space-x-1 rounded-md
+      p-4 duration-200 hover:bg-slate-100/90"
     >
       <Checkbox checked={checked} onClick={handleCheckChange} />
       <Input
-        id={id}
+        id={todoId}
         className={`text-md border-none bg-transparent outline-transparent
         ring-offset-transparent focus-visible:ring-transparent
         ${checked ? "text-slate-400 line-through" : ""}`}
@@ -51,8 +46,9 @@ export function Todo({
               <TooltipTrigger asChild>
                 <Button
                   size="icon"
-                  className="flex shadow-none bg-transparent hover:bg-slate-200
-                  active:bg-slate-300/90 items-center rounded-full"
+                  className="flex items-center rounded-full bg-transparent
+                  shadow-none hover:bg-slate-200 active:bg-slate-300/90"
+                  onClick={() => onDeleteTodo(todoId)}
                 >
                   <DeleteIcon
                     className="h-6 w-6 fill-slate-700 transition-all
@@ -69,8 +65,8 @@ export function Todo({
   );
 }
 Todo.propTypes = {
-  className: PropTypes.string,
-  id: PropTypes.number,
+  todoId: PropTypes.number,
   data: PropTypes.string,
   isChecked: PropTypes.bool,
+  onDeleteTodo: PropTypes.func,
 };

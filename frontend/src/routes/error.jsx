@@ -12,9 +12,7 @@ export function Error() {
         route:
       </p>
       <p>
-        <strong>
-          {error.name + ": " + error.message}
-        </strong>
+        <strong>{error.name + ": " + error.message}</strong>
       </p>
     </main>
   );
