@@ -12,7 +12,6 @@ import {
 export function Today() {
   const [todayList, setTodayList] = useState(null);
   const [loading, setLoading] = useState(true);
-  console.log(todayList);
 
   const route = useLocation().pathname;
   loginRequired(route);

@@ -40,6 +40,17 @@ export function TodoList({ listId, listDate, listTodos }) {
     }
   }
 
+  function handleUpdateTodo(todoId, todo, checked) {
+    const updateTodo = { todo_id: todoId, todo: todo, checked: checked };
+
+    try {
+      axios.put("/todos/", updateTodo);
+    } catch (err) {
+      alert(err);
+      console.log(err);
+    }
+  }
+
   return (
     <section className="mb-12 mt-4 flex w-full flex-col rounded-3xl px-12 pb-16 pt-4">
       <TodoListHeader listDate={listDate} />
@@ -54,6 +65,7 @@ export function TodoList({ listId, listDate, listTodos }) {
               data={todo.todo}
               isChecked={todo.checked}
               onDeleteTodo={handleDeleteTodo}
+              onUpdateTodo={handleUpdateTodo}
             />
             <Separator className="my-2" />
           </>

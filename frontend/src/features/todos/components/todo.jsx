@@ -1,5 +1,5 @@
 import { PropTypes } from "prop-types";
-import { useState } from "react";
+import { useRef, useEffect, useState } from "react";
 
 import { Checkbox } from "@/ui/checkbox.jsx";
 import { Button } from "@/ui/button.jsx";
@@ -12,17 +12,35 @@ import {
   TooltipContent,
 } from "@/ui/tooltip.jsx";
 
-export function Todo({ todoId, data, isChecked, onDeleteTodo }) {
+export function Todo({ todoId, data, isChecked, onDeleteTodo, onUpdateTodo }) {
   const [todo, setTodo] = useState(data);
   const [checked, setChecked] = useState(isChecked);
+  const inputRef = useRef(null);
 
-  function handleInputChange(event) {
-    setTodo(event.value);
+  function handleInputChange(e) {
+    setTodo(e.currentTarget.value);
   }
 
   function handleCheckChange() {
     setChecked(!checked);
   }
+
+  function handleKeyDown(e) {
+    if (e.key === "Escape") {
+      inputRef.current.blur();
+    }
+  }
+
+  useEffect(() => {
+    let ignore = false;
+
+    if (!ignore) {
+      console.log("onUpdateTodo called");
+      onUpdateTodo(todoId, todo, checked);
+    }
+
+    return () => (ignore = true);
+  }, [todoId, todo, checked, onUpdateTodo]);
 
   return (
     <li
@@ -31,6 +49,7 @@ export function Todo({ todoId, data, isChecked, onDeleteTodo }) {
     >
       <Checkbox checked={checked} onClick={handleCheckChange} />
       <Input
+        ref={inputRef}
         id={todoId}
         className={`text-md border-none bg-transparent outline-transparent
         ring-offset-transparent focus-visible:ring-transparent
@@ -38,6 +57,7 @@ export function Todo({ todoId, data, isChecked, onDeleteTodo }) {
         value={todo}
         onChange={handleInputChange}
         autocomplete="off"
+        onKeyDown={handleKeyDown}
       />
       <ul className="flex grow items-center justify-end space-x-4">
         <li className="flex items-center">
@@ -69,4 +89,5 @@ Todo.propTypes = {
   data: PropTypes.string,
   isChecked: PropTypes.bool,
   onDeleteTodo: PropTypes.func,
+  onUpdateTodo: PropTypes.func,
 };
