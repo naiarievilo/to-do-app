@@ -18,7 +18,7 @@ export function TodoListSkeleton() {
 function TodoSkeleton() {
   return (
     <>
-      <div className="my-2 flex items-center">
+      <div className="my-1 flex items-center">
         <Skeleton className="rounded-xs mx-4 h-4 w-4" />
         <Skeleton className="my-1 h-9 grow p-4" />
         <Skeleton className="mx-4 h-9 w-9 rounded-full" />
