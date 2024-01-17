@@ -24,15 +24,14 @@ export function createTodo() {
 
 export function updateTodo() {
   return async (req, res) => {
-    const { list_id, todo_id, todo, checked } = req.body;
+    const { todo_id, todo, checked } = req.body;
 
     try {
       await db.none(
         `UPDATE todos
             SET todo = $1, checked = $2
-          WHERE list_id = $3
-            AND id = $4`,
-        [todo, checked, list_id, todo_id],
+          WHERE id = $3`,
+        [todo, checked, todo_id],
       );
     } catch (err) {
       console.error(err);
