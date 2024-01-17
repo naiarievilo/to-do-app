@@ -45,14 +45,13 @@ export function updateTodo() {
 
 export function deleteTodo() {
   return async (req, res) => {
-    const { list_id, todo_id } = req.body;
+    const { todo_id } = req.body;
 
     try {
       await db.none(
         `DELETE FROM todos
-               WHERE id = $1
-                 AND list_id = $2`,
-        [todo_id, list_id],
+               WHERE id = $1`,
+        [todo_id]
       );
     } catch (err) {
       console.error(err);
