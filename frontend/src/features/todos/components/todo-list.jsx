@@ -52,7 +52,7 @@ export function TodoList({ listId, listDate, listTodos }) {
   }
 
   return (
-    <section className="mt-4 flex w-full flex-col rounded-3xl px-12 pb-8 pt-4">
+    <section className="mt-4 flex flex-col rounded-3xl px-12 pb-8 pt-4">
       <TodoListHeader listDate={listDate} />
       <Separator className="bg-slate-400" />
       <ul className="flex flex-col rounded-xl">
