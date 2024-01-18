@@ -14,7 +14,6 @@ export function AppHeader({ header, appIcon, appName }) {
     >
       <AppLogo
         appName={appName}
-        link={isLoggedIn() ? "/home" : "/"}
         appIcon={appIcon}
       />
       <nav>{isLoggedIn() && LoggedMenu}</nav>
