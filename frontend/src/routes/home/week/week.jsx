@@ -51,11 +51,11 @@ export function Week() {
     return (
       <TodoContainer>
         <ul className="flex h-full w-full grow flex-col">
-          {weeklyLists.map((weeklyList) => (
+          {weeklyLists.map((weeklyList) => ( 
             <TodoList
               key={weeklyList.listId}
               listId={weeklyList.listId}
-              listDate={new Date(weeklyList.listDate)}
+              listDate={weeklyList.listDate}
               listTodos={weeklyList.todos}
             />
           ))}

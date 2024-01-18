@@ -52,15 +52,14 @@ export function TodoList({ listId, listDate, listTodos }) {
   }
 
   return (
-    <section className="mb-12 mt-4 flex w-full flex-col rounded-3xl px-12 pb-16 pt-4">
+    <section className="mt-4 flex w-full flex-col rounded-3xl px-12 pb-8 pt-4">
       <TodoListHeader listDate={listDate} />
       <Separator className="bg-slate-400" />
-      <ul className="my-4 flex flex-col rounded-xl">
+      <ul className="flex flex-col rounded-xl">
         {todos.map((todo) => (
           <>
             <Todo
               key={todo.todoId}
-              listId={listId}
               todoId={todo.todoId}
               data={todo.todo}
               isChecked={todo.checked}
@@ -94,8 +93,8 @@ function TodoListHeader({ listDate }) {
   });
 
   return (
-    <header className="my-4 flex items-center justify-between rounded-2xl">
-      <h2 className="text-3xl font-bold tracking-tight text-slate-700">
+    <header className="my-2 flex items-center justify-between rounded-2xl">
+      <h2 className="text-2xl 2xl:text-3xl font-bold tracking-tight text-slate-700">
         {date}
       </h2>
     </header>

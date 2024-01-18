@@ -39,6 +39,7 @@ export function AddTodo({ listId, onCreateTodo }) {
       py-2 pl-4 hover:bg-slate-200/40"
     >
       <Checkbox
+        className="relative top-0.5"
         checked={checked}
         disabled={nextTodo ? false : true}
         onClick={handleCheckChange}
