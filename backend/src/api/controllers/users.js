@@ -21,7 +21,7 @@ export function signUpUser() {
       if (hasUser) {
         return res.status(400).json(
           errorObj({
-            message: "Email is already registered.",
+            message: "Email is already registered",
           }),
         );
       }
