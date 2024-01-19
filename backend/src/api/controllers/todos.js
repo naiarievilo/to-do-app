@@ -1,11 +1,9 @@
 import { db } from "#db";
-import { escape } from "validator";
 import { errorObj, successObj } from "#utils/json.js";
 
 export function createTodo() {
   return async (req, res) => {
     const { list_id, todo, checked } = req.body;
-    todo = escape(todo);
 
     let todoInfo;
     try {
@@ -27,7 +25,6 @@ export function createTodo() {
 export function updateTodo() {
   return async (req, res) => {
     const { todo_id, todo, checked } = req.body;
-    todo = escape(todo);
 
     try {
       await db.none(

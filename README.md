@@ -3,7 +3,7 @@
 CS50x 2024 final project. Besides the technologies taught in the lectures, additional
 technologies were used aiming to learn web development.
 
-Video demo: <URL HERE>
+Video demo: <https://youtu.be/-6yQxfNHeyA>
 
 ## DESCRIPTION
 TODO is a to-do list desktop web app that helps you keep track of your daily and

@@ -43,10 +43,14 @@ export function Todo({ todoId, data, isChecked, onDeleteTodo, onUpdateTodo }) {
 
   return (
     <li
-      className="translate-all flex h-12 items-center space-x-1 rounded-md
-      p-4 duration-200 hover:bg-slate-100/90 my-2"
+      className="translate-all my-2 flex h-12 items-center space-x-1
+      rounded-md p-4 duration-200 hover:bg-slate-100/90"
     >
-      <Checkbox className="relative top-0.5" checked={checked} onClick={handleCheckChange} />
+      <Checkbox
+        className="relative top-0.5"
+        checked={checked}
+        onClick={handleCheckChange}
+      />
       <Input
         ref={inputRef}
         id={todoId}

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { PropTypes } from "prop-types";
 import { useState } from "react";
-import { escape } from "validator";
 
 import { Separator } from "@/ui/separator.jsx";
 
@@ -12,7 +11,7 @@ export function TodoList({ listId, listDate, listTodos }) {
   const [todos, setTodos] = useState(listTodos);
 
   async function handleCreateTodo(listId, todo, checked) {
-    const newTodo = { list_id: listId, todo: escape(todo), checked: checked };
+    const newTodo = { list_id: listId, todo: todo, checked: checked };
 
     try {
       const result = await axios.post("/todos/", newTodo);
@@ -42,7 +41,11 @@ export function TodoList({ listId, listDate, listTodos }) {
   }
 
   function handleUpdateTodo(todoId, todo, checked) {
-    const updateTodo = { todo_id: todoId, todo: escape(todo), checked: checked };
+    const updateTodo = {
+      todo_id: todoId,
+      todo: todo,
+      checked: checked,
+    };
 
     try {
       axios.put("/todos/", updateTodo);
@@ -95,7 +98,7 @@ function TodoListHeader({ listDate }) {
 
   return (
     <header className="my-2 flex items-center justify-between rounded-2xl">
-      <h2 className="text-2xl 2xl:text-3xl font-bold tracking-tight text-slate-700">
+      <h2 className="text-2xl font-bold tracking-tight text-slate-700 2xl:text-3xl">
         {date}
       </h2>
     </header>

@@ -9,7 +9,7 @@ export function TodoMenu() {
       <nav className="w-72 px-8 py-12">
         <section className="flex flex-col space-y-4">
           <header className="flex items-center space-y-2">
-            <h2 className="text-lg 2xl:text-xl font-semibold tracking-wide text-blue-500">
+            <h2 className="text-lg font-semibold tracking-wide text-blue-500 2xl:text-xl">
               CALENDAR
             </h2>
           </header>
@@ -31,8 +31,8 @@ function MenuItem({ label, children, to }) {
   return (
     <li className="rounded-xl py-2 pl-2 pr-6">
       <Link
-        className="transition-color flex items-center fill-slate-600
-        text-md 2xl:text-lg duration-200 hover:fill-blue-500 hover:text-blue-500"
+        className="transition-color text-md flex items-center
+        fill-slate-600 duration-200 hover:fill-blue-500 hover:text-blue-500 2xl:text-lg"
         to={to}
       >
         {children}
