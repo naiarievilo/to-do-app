@@ -50,7 +50,7 @@ its local source files private.
 ### Backend
 #### Techonologies
 The backend was built using [Express](https://expressjs.com/)
-(and its associated ecosystem middlewares). The backend was built as an RESTful API.
+(and its associated ecosystem middlewares). The backend was built as an JSON API.
 
 #### File structure
 The backend source files are structured as below:
